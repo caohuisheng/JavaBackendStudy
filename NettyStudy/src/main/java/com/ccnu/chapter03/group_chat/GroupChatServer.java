@@ -1,4 +1,4 @@
-package com.ccnu.chapter02.group_chat;
+package com.ccnu.chapter03.group_chat;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -1,10 +1,9 @@
-package com.ccnu.chapter01;
+package com.ccnu.chapter02;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.ServerSocketChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

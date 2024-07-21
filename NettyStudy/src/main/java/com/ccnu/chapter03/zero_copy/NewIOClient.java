@@ -1,13 +1,11 @@
-package com.ccnu.chapter02.zero_copy;
+package com.ccnu.chapter03.zero_copy;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Author: chs

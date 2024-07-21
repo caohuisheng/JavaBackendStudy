@@ -1,4 +1,4 @@
-package com.ccnu.chapter02;
+package com.ccnu.chapter03;
 
 import java.nio.IntBuffer;
 
