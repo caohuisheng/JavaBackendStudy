@@ -1,4 +1,4 @@
-package com.ccnu.chapter03;
+package com.ccnu.chapter03.byte_buffer;
 
 import java.io.File;
 import java.io.FileInputStream;

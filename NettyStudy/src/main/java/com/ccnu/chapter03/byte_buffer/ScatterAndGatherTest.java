@@ -1,4 +1,4 @@
-package com.ccnu.chapter03;
+package com.ccnu.chapter03.byte_buffer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -58,7 +58,4 @@ public class ScatterAndGatherTest {
         }
     }
 
-    public void test(){
-
-    }
 }
