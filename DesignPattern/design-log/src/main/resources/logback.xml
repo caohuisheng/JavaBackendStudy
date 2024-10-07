@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" debug="false" scanPeriod="30 seconds">
 
-    <property name="linkPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS}\t%level\t[%thread] %X{traceId}\t(%F:%L\\\) | %msg%n"/>
+    <property name="linkPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS}\t%level [%thread] %X{traceId}\t(%F:%L\\\) | %msg%n"/>
 
     <appender name="linkConsole" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
