@@ -38,6 +38,9 @@
         <module>design-7-02</module>
         <module>design-8-01</module>
         <module>design-8-02</module>
+        <module>design-9-00</module>
+        <module>design-9-01</module>
+        <module>design-9-02</module>
     </modules>
 
     <dependencies>
