@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: itstack-demo-springboot-helloworld-door
+
+itstack:
+  door:
+    enabled: true
+    userStr: 1001,aaa,bbb
