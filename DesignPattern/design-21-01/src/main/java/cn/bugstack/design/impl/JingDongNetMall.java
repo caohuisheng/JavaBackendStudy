@@ -30,8 +30,7 @@ public class JingDongNetMall extends NetMall {
     @Override
     protected Map<String, String> reptile(String skuUrl) {
         String resp = HttpClient.doGet(skuUrl);
-        //"(?<=title\\>).*(?=</title)"
-        Pattern pattern = Pattern.compile("(?<=title\\>).*(?=</title>)");
+        Pattern pattern = Pattern.compile("(?<=<title>).*(?=</title>)");
         Matcher matcher = pattern.matcher(resp);
         Map<String, String> infoMap = new HashMap<>();
         if(matcher.find()){
