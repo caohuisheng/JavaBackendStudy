@@ -10,10 +10,14 @@ spring:
     name: orderservice
   cloud:
     nacos:
-      server-addr: 172.25.102.168:8848 # nacos服务地址
+      server-addr: 127.0.0.1:8848 # nacos服务地址
       discovery:
-        namespace: 1044b24a-54b4-4006-b953-21f2199736c7 # dev环境
+#        namespace: 1044b24a-54b4-4006-b953-21f2199736c7 # dev环境
         ephemeral: false # 是否是临时实例
+    sentinel:
+      transport:
+        dashboard: 172.25.107.97:8090
+      web-context-unify: false # 关闭context整合
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -40,6 +44,8 @@ feign:
     config:
       default:
         loggerLevel: BASIC # 日志等级
+  sentinel:
+    enabled: true # 开启feign对sentinel的支持
   httpclient:
     enabled: true # 支持HttpClient的开关
     max-connections: 200 # 最大连接数

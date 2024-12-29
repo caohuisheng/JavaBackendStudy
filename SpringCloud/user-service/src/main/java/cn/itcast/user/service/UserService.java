@@ -12,6 +12,16 @@ public class UserService {
     private UserMapper userMapper;
 
     public User queryById(Long id) {
+        if(id == 1) {
+            // id为1时触发慢调用
+            try {
+                Thread.sleep(60);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else if(id == 2){
+            throw new RuntimeException("抛出异常，触发异常比例熔断");
+        }
         return userMapper.findById(id);
     }
 }
