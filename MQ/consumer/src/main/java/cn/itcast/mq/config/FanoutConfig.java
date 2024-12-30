@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Author: chs
- * Description:
+ * Description: 广播交换机配置
  * CreateTime: 2024-12-27
  */
 @Configuration

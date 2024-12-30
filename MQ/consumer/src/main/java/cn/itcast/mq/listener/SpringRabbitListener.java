@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Description:
  * CreateTime: 2024-12-27
  */
-@Component
+// @Component
 public class SpringRabbitListener {
 
     @RabbitListener(queues = "simple.queue")
@@ -68,4 +68,6 @@ public class SpringRabbitListener {
     public void listenTopicQueue2(String msg){
         System.out.println("消费者接收到topic.queue2的消息：【" + msg + "】");
     }
+
+
 }
