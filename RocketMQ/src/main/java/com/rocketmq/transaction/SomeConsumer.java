@@ -1,4 +1,4 @@
-package com.abc.transaction;
+package com.rocketmq.transaction;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -28,7 +28,6 @@ public class SomeConsumer {
 
         // 注册消息监听器
         consumer.registerMessageListener(new MessageListenerConcurrently() {
-
             // 一旦broker中有了其订阅的消息就会触发该方法的执行，
             // 其返回值为当前consumer消费的状态
             @Override

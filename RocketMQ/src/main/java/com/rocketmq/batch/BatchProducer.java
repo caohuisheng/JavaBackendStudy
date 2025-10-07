@@ -1,4 +1,4 @@
-package com.abc.batch;
+package com.rocketmq.batch;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
@@ -28,7 +28,7 @@ public class BatchProducer {
         MessageListSplitter splitter = new MessageListSplitter(messages);
         while (splitter.hasNext()) {
             try {
-                List<Message>  listItem = splitter.next();
+                List<Message> listItem = splitter.next();
                 producer.send(listItem);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.abc.general;
+package com.rocketmq.retry;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -11,7 +11,7 @@ public class SyncProducer {
         DefaultMQProducer producer = new DefaultMQProducer("pg");
         // 指定nameServer地址
         producer.setNamesrvAddr("rocketmqOS:9876");
-        // 设置当发送失败时重试发送的次数，默认为2次
+        // 设置同步发送失败时重试发送的次数，默认为2次
         producer.setRetryTimesWhenSendFailed(3);
         // 设置发送超时时限为5s，默认3s
         producer.setSendMsgTimeout(5000);

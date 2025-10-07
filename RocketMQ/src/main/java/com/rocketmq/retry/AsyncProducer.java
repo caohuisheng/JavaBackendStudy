@@ -1,4 +1,4 @@
-package com.abc.general;
+package com.rocketmq.retry;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;

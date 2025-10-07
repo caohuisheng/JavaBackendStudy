@@ -1,4 +1,4 @@
-package com.abc.general;
+package com.rocketmq.retry;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -26,9 +26,14 @@ public class SomeConsumer {
         // 指定采用“广播模式”进行消费，默认为“集群模式”
         // consumer.setMessageModel(MessageModel.BROADCASTING);
 
+        // 顺序消息消费失败的消费重试时间间隔，默认为1000毫秒，其取值范围为[10, 30000]毫秒
+        consumer.setSuspendCurrentQueueTimeMillis(100);
+
+        // 修改消费重试次数
+        consumer.setMaxReconsumeTimes(20);
+
         // 注册消息监听器
         consumer.registerMessageListener(new MessageListenerConcurrently() {
-
             // 一旦broker中有了其订阅的消息就会触发该方法的执行，
             // 其返回值为当前consumer消费的状态
             @Override

@@ -1,4 +1,4 @@
-package com.abc.general;
+package com.rocketmq.general;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;

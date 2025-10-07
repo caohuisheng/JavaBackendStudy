@@ -1,4 +1,4 @@
-package com.abc.transaction;
+package com.rocketmq.transaction;
 
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
@@ -11,16 +11,6 @@ public class TransactionProducer {
         TransactionMQProducer producer = new TransactionMQProducer("tpg");
         producer.setNamesrvAddr("rocketmqOS:9876");
 
-        /**
-         *  定义一个线程池
-         * @param corePoolSize 线程池中核心线程数量
-         * @param maximumPoolSize 线程池中最多线程数
-         * @param keepAliveTime 这是一个时间。当线程池中线程数量大于核心线程数量是，
-         *                      多余空闲线程的存活时长
-         * @param unit 时间单位
-         * @param workQueue 临时存放任务的队列，其参数就是队列的长度
-         * @param threadFactory 线程工厂
-         */
         ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>(2000), new ThreadFactory() {
             @Override
@@ -35,7 +25,6 @@ public class TransactionProducer {
         producer.setExecutorService(executorService);
         // 为生产者添加事务监听器
         producer.setTransactionListener(new ICBCTransactionListener());
-
         producer.start();
 
         String[] tags = {"TAGA","TAGB","TAGC"};
@@ -47,5 +36,7 @@ public class TransactionProducer {
             SendResult sendResult = producer.sendMessageInTransaction(msg,null);
             System.out.println("发送结果为：" + sendResult.getSendStatus());
         }
+
+        producer.shutdown();
     }
 }

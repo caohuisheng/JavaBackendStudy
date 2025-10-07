@@ -1,4 +1,4 @@
-package com.abc.batch;
+package com.rocketmq.batch;
 
 import org.apache.rocketmq.common.message.Message;
 

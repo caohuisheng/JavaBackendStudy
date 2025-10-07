@@ -1,4 +1,4 @@
-package com.abc.order;
+package com.rocketmq.order;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
@@ -8,7 +8,10 @@ import org.apache.rocketmq.common.message.MessageQueue;
 
 import java.util.List;
 
-public class OrderedProducer {
+/**
+ * 局部有序消息生产者
+ */
+public class OrderedProducer2 {
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("pg");
         producer.setNamesrvAddr("rocketmqOS:9876");
@@ -28,7 +31,6 @@ public class OrderedProducer {
             // send()的第三个参数值会传递给选择器的select()的第三个参数
             // 该send()为同步发送
             SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
-
                 // 具体的选择算法在该方法中定义
                 @Override
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {

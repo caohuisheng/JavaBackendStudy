@@ -1,33 +1,28 @@
-package com.abc.delay;
+package com.rocketmq.filter;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class OtherConsumer {
-    public static void main(String[] args) throws MQClientException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("cg");
+public class FilterByTagConsumer {
+    public static void main(String[] args) throws Exception {
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("pg");
         consumer.setNamesrvAddr("rocketmqOS:9876");
-
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-        consumer.subscribe("TopicB", "*");
 
+        // 仅订阅Tag为myTagA与myTagB的消息，不包含myTagC
+        consumer.subscribe("TopicC", "myTagA || myTagB");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
-                                                            ConsumeConcurrentlyContext context) {
-                for (MessageExt msg : msgs) {
-                    // 输出消息被消费的时间
-                    System.out.print(new SimpleDateFormat("mm:ss").format(new Date()));
-                    System.out.println(" ," + msg);
+                                               ConsumeConcurrentlyContext context) {
+                for (MessageExt me:msgs){
+                    System.out.println(me);
                 }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
