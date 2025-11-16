@@ -39,7 +39,7 @@ public class TwoPhaseStopTest {
     public static void main(String[] args) throws InterruptedException {
         TwoPhaseStopTest twoPhaseStopTest = new TwoPhaseStopTest();
         twoPhaseStopTest.start();
-        Thread.sleep(3500);
+        Thread.sleep(3000);
         log.info("stop");
         twoPhaseStopTest.stop();
     }
