@@ -1,0 +1,858 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SCM.RoleManage.OpenApi",
+    "version": "v2"
+  },
+  "servers": [
+    {
+      "url": "/SCM.RoleManage.OpenApi"
+    }
+  ],
+  "paths": {
+    "/apis/UserOpenApi/AddOneEntity": {
+      "post": {
+        "tags": [
+          "UserOpenApi"
+        ],
+        "summary": "增加一个用户",
+        "operationId": "AddOneEntity",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DTOEditUserInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/int32tycinteger"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apis/UserOpenApi/GetUser": {
+      "get": {
+        "tags": [
+          "UserOpenApi"
+        ],
+        "summary": "获取单个用户",
+        "operationId": "GetUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "用户ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[SCM.RoleManage.DTO.DTOEditUserInfo, SCM.Contract.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apis/UserOpenApi/GetUsers": {
+      "post": {
+        "tags": [
+          "UserOpenApi"
+        ],
+        "summary": "批量获取用户",
+        "operationId": "GetUsers",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tycarray"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apis/UserOpenApi/ThrowExcetion": {
+      "post": {
+        "tags": [
+          "UserOpenApi"
+        ],
+        "summary": "测试抛出异常",
+        "operationId": "ThrowExcetion",
+        "parameters": [
+          {
+            "name": "erorrCode",
+            "in": "query",
+            "description": "异常信息",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tycstring"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apis/UserOpenApi/ReturnString": {
+      "post": {
+        "tags": [
+          "UserOpenApi"
+        ],
+        "operationId": "ReturnString",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tycstring"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DTOEditUserInfo": {
+        "required": [
+          "Email",
+          "Mobile",
+          "UserID",
+          "UserIdentity",
+          "UserPass"
+        ],
+        "type": "object",
+        "properties": {
+          "ListUdfRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UdfRecord"
+            },
+            "description": "自定义数据信息",
+            "nullable": true
+          },
+          "ListUdfDisplays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UdfDisplayForQuery"
+            },
+            "description": "自定义显示信息",
+            "nullable": true
+          },
+          "ListSubModules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UdfDisplaySubModule"
+            },
+            "description": "ListSubModules",
+            "nullable": true
+          },
+          "UserInfoId": {
+            "type": "integer",
+            "description": "用户信息ID",
+            "format": "int32"
+          },
+          "UserID": {
+            "minLength": 1,
+            "type": "string",
+            "description": "用户ID"
+          },
+          "UserName": {
+            "type": "string",
+            "description": "用户名称",
+            "nullable": true
+          },
+          "UserPass": {
+            "minLength": 1,
+            "type": "string",
+            "description": "密码"
+          },
+          "PwdMD5": {
+            "type": "string",
+            "description": "PwdMD5",
+            "nullable": true
+          },
+          "Email": {
+            "minLength": 1,
+            "type": "string",
+            "description": "电子邮箱"
+          },
+          "Mobile": {
+            "minLength": 1,
+            "type": "string",
+            "description": "手机"
+          },
+          "QQ": {
+            "type": "string",
+            "description": "QQ",
+            "nullable": true
+          },
+          "IsActive": {
+            "type": "string",
+            "description": "是否启用",
+            "nullable": true
+          },
+          "IS_ALLOW_APP": {
+            "type": "string",
+            "description": "允许APP登录",
+            "nullable": true
+          },
+          "IsSys": {
+            "type": "string",
+            "description": "系统标记",
+            "nullable": true
+          },
+          "UserIdentity": {
+            "minLength": 1,
+            "type": "string",
+            "description": "用户身份",
+            "default": "30"
+          },
+          "ServiceProviderGID": {
+            "type": "string",
+            "description": "承运商标识",
+            "nullable": true
+          },
+          "ServiceProviderID": {
+            "type": "string",
+            "description": "承运商ID",
+            "nullable": true
+          },
+          "ServiceProviderName": {
+            "type": "string",
+            "description": "承运商名称",
+            "nullable": true
+          },
+          "CustomerGID": {
+            "type": "string",
+            "description": "客户标识",
+            "nullable": true
+          },
+          "CustomerID": {
+            "type": "string",
+            "description": "客户ID",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "客户名称",
+            "nullable": true
+          },
+          "VendorGID": {
+            "type": "string",
+            "description": "供应商标识",
+            "nullable": true
+          },
+          "VendorID": {
+            "type": "string",
+            "description": "供应商代码",
+            "nullable": true
+          },
+          "OwnerGID": {
+            "type": "string",
+            "description": "货主标识",
+            "nullable": true
+          },
+          "OwnerID": {
+            "type": "string",
+            "description": "货主代码",
+            "nullable": true
+          },
+          "DomainName": {
+            "type": "string",
+            "description": "域",
+            "nullable": true
+          },
+          "APPEND_DOMAIN": {
+            "type": "string",
+            "description": "附属域",
+            "nullable": true
+          },
+          "ServiceUrl": {
+            "type": "string",
+            "description": "移动服务地址",
+            "nullable": true
+          },
+          "LBSAPI": {
+            "type": "string",
+            "description": "LBS秘钥",
+            "nullable": true
+          },
+          "IsMobile": {
+            "type": "string",
+            "description": "是否绑定手机",
+            "nullable": true
+          },
+          "TTID": {
+            "type": "string",
+            "description": "租户ID",
+            "nullable": true
+          },
+          "FAX": {
+            "type": "string",
+            "description": "传真",
+            "nullable": true
+          },
+          "DEPARTMENT": {
+            "type": "string",
+            "description": "部门",
+            "nullable": true
+          },
+          "COUNTRY": {
+            "type": "string",
+            "description": "国家",
+            "nullable": true
+          },
+          "ZIP": {
+            "type": "string",
+            "description": "邮编",
+            "nullable": true
+          },
+          "USER_AUTHORITY_ALL": {
+            "type": "string",
+            "description": "授权所有用户",
+            "nullable": true
+          },
+          "SHOW_TIME_ZONE": {
+            "type": "string",
+            "description": "显示时区",
+            "nullable": true
+          },
+          "ADDRESS": {
+            "type": "string",
+            "description": "详细地址",
+            "nullable": true
+          },
+          "USERINFO_UDF1": {
+            "type": "string",
+            "description": "用户自定义1",
+            "nullable": true
+          },
+          "USERINFO_UDF2": {
+            "type": "string",
+            "description": "用户自定义2",
+            "nullable": true
+          },
+          "USERINFO_UDF3": {
+            "type": "string",
+            "description": "用户自定义3",
+            "nullable": true
+          },
+          "USERINFO_UDF4": {
+            "type": "string",
+            "description": "用户自定义4",
+            "nullable": true
+          },
+          "USERINFO_UDF5": {
+            "type": "string",
+            "description": "用户自定义5",
+            "nullable": true
+          },
+          "Roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DTOEditUserRole"
+            },
+            "description": "Roles",
+            "nullable": true
+          },
+          "IS_ENABLE_MFA": {
+            "type": "string",
+            "description": "是否启用二次验证",
+            "nullable": true
+          },
+          "IS_BINDING_MFA": {
+            "type": "string",
+            "description": "是否绑定MFA",
+            "nullable": true
+          },
+          "PASSWORD_EFFECTIVE_DATE": {
+            "type": "string",
+            "description": "密码有效日期",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DTOEditUserRole": {
+        "required": [
+          "IsDefault",
+          "RoleID"
+        ],
+        "type": "object",
+        "properties": {
+          "RoleID": {
+            "minLength": 1,
+            "type": "string",
+            "description": "角色ID"
+          },
+          "IsDefault": {
+            "minLength": 1,
+            "type": "string",
+            "description": "是否默认"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[Quantum.FrameWorkCore.WebUI.UDF.UdfDisplayForQuery, Quantum.Framework.Core.StandardLib, Version=9999.9999.9999.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/UdfDisplayForQuery"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[Quantum.FrameWorkCore.WebUI.UDF.UdfDisplaySubModule, Quantum.Framework.Core.StandardLib, Version=9999.9999.9999.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/UdfDisplaySubModule"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[Quantum.FrameWorkCore.WebUI.UDF.UdfRecord, Quantum.Framework.Core.StandardLib, Version=9999.9999.9999.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/UdfRecord"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[Quantum.FrameWorkCore.WebUI.UDF.UdfRecordSetLine, Quantum.Framework.Core.StandardLib, Version=9999.9999.9999.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/UdfRecordSetLine"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[SCM.RoleManage.DTO.DTOEditUserInfo, SCM.Contract.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/DTOEditUserInfo"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "Quantum.Framework.Core.NetCore.BaseClass.OpenApi.ApiResponseModel`1[[SCM.RoleManage.DTO.DTOEditUserRole, SCM.Contract.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/DTOEditUserRole"
+          }
+        },
+        "description": "结果返回模型"
+      },
+      "UdfDisplayForQuery": {
+        "type": "object",
+        "properties": {
+          "TypeName": {
+            "type": "string",
+            "description": "模块名称",
+            "nullable": true
+          },
+          "PropName": {
+            "type": "string",
+            "description": "存储过程名称",
+            "nullable": true
+          },
+          "SortID": {
+            "type": "number",
+            "description": "排序ID",
+            "format": "double"
+          },
+          "IsHidden": {
+            "type": "number",
+            "description": "是否隐藏",
+            "format": "double"
+          },
+          "IsForzen": {
+            "type": "number",
+            "description": "是否锁定",
+            "format": "double"
+          },
+          "Width": {
+            "type": "number",
+            "description": "宽度",
+            "format": "double"
+          },
+          "IS_PROTECT_SEARCH": {
+            "type": "number",
+            "description": "IS_PROTECT_SEARCH",
+            "format": "double"
+          },
+          "IS_PROTECT_CONTENT": {
+            "type": "number",
+            "description": "内容保护",
+            "format": "double"
+          },
+          "IsSummary": {
+            "type": "string",
+            "description": "IsSummary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UdfDisplaySubModule": {
+        "type": "object",
+        "properties": {
+          "ModuleName": {
+            "type": "string",
+            "description": "模块名称",
+            "nullable": true
+          },
+          "ModuleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ModuleIds",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UdfRecord": {
+        "type": "object",
+        "properties": {
+          "RecordID": {
+            "type": "string",
+            "description": "扩展记录ID",
+            "nullable": true
+          },
+          "SetLine": {
+            "$ref": "#/components/schemas/UdfRecordSetLine"
+          },
+          "RecordValue": {
+            "type": "string",
+            "description": "记录值",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UdfRecordSetLine": {
+        "type": "object",
+        "properties": {
+          "TypeName": {
+            "type": "string",
+            "description": "模块名称",
+            "nullable": true
+          },
+          "TTID": {
+            "type": "string",
+            "description": "租户ID",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "description": "名称",
+            "nullable": true
+          },
+          "DataType": {
+            "type": "number",
+            "description": "数据类型",
+            "format": "double"
+          },
+          "DisplayName": {
+            "type": "string",
+            "description": "显示名称",
+            "nullable": true
+          },
+          "IsShowInQuery": {
+            "type": "number",
+            "description": "列表显示",
+            "format": "double"
+          },
+          "DropDownListSource": {
+            "type": "string",
+            "description": "下拉框数据源",
+            "nullable": true
+          },
+          "DdlSource": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "数据源",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "int32tycinteger": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "结果返回模型"
+      },
+      "tycarray": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DTOEditUserInfo"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "description": "结果返回模型"
+      },
+      "tycstring": {
+        "type": "object",
+        "properties": {
+          "Flag": {
+            "type": "boolean",
+            "description": "响应标识",
+            "format": "bool"
+          },
+          "RequestId": {
+            "type": "string",
+            "description": "请求id"
+          },
+          "ErrorCode": {
+            "type": "string",
+            "description": "错误代码",
+            "nullable": true
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": "错误信息",
+            "nullable": true
+          },
+          "Data": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "结果返回模型"
+      }
+    },
+    "securitySchemes": {
+      "Token": {
+        "type": "apiKey",
+        "description": "请输入token",
+        "name": "qt-rq-tk",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Token": [ ]
+    }
+  ]
+}

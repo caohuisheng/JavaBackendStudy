@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: xiaoyumin
+        username: nacos
+        password: nacos
+    discovery:
+      reactive:
+        enabled: false
+    loadbalancer:
+      retry:
+        enabled: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    show-extensions: true
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/org/**'
+      packages-to-scan: com.github.knife4j.user
+  default-flat-param-object: false
+server:
+  port: 10091

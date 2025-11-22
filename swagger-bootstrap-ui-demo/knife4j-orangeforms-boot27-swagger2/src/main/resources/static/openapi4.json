@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API",
+    "description": "",
+    "license": {
+      "name": "",
+      "url": ""
+    },
+    "version": "v1.0.0"
+  },
+  "externalDocs": {
+    "description": "",
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "Access-Token": []
+    }
+  ],
+  "paths": {
+    "/project": {
+      "post": {
+        "tags": [
+          "项目相关API"
+        ],
+        "summary": "创建project",
+        "operationId": "postProject",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectVO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "hello",
+                  "id": 123
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProjectVO": {
+        "required": [
+          "language",
+          "model",
+          "project"
+        ],
+        "type": "object",
+        "properties": {
+          "project": {
+            "pattern": "^(?!.*[\\\\/!:*?\"\\s<>|\\u4e00-\\u9fa5\\uFF00-\\uFFFF]).{1,50}$",
+            "type": "string",
+            "description": "项目名",
+            "example": "test_01"
+          },
+          "model": {
+            "type": "string",
+            "description": "",
+            "example": "upload"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Access-Token": {
+        "type": "apiKey",
+        "name": "Access-Token",
+        "in": "header"
+      }
+    }
+  }
+}

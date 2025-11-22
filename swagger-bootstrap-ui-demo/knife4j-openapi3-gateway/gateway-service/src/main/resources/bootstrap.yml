@@ -1,0 +1,69 @@
+server:
+  port: 10093
+knife4j:
+  gateway:
+    enabled: true
+#    strategy: manual
+#    routes:
+#      - name: 订单openapi2
+#        service-name: user-service
+#        url: /order-service-openapi2/v2/api-docs?group=default
+#        context-path: /
+#      - name: 订单openapi3
+#        service-name: order-service
+#        url: /order/v3/api-docs/default
+#        context-path: /order
+    strategy: discover
+    discover:
+      version: swagger2
+      enabled: true
+      excluded-services:
+        - order.*
+      service-config:
+        order-service:
+          - group-name: 订单服务
+            order: 1
+        user-service:
+          - group-name: 用户服务
+            order: 2
+    tags-sorter: order
+    operations-sorter: order
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+    discovery:
+      reactive:
+        enabled: true
+    loadbalancer:
+      retry:
+        enabled: true
+    # 路由网关配置
+    gateway:
+      # 启用了自动根据服务名建立路由
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+          filters:
+            - RewritePath=/user/(?<segment>.*),/$\{segment}
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+          filters:
+            - RewritePath=/order/(?<segment>.*),/$\{segment}
+logging:
+  config: classpath:logback-spring.xml

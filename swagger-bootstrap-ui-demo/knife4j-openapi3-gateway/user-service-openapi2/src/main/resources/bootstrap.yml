@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: user-service-openapi2
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: xiaoyumin
+        username: nacos
+        password: nacos
+    discovery:
+      reactive:
+        enabled: false
+    loadbalancer:
+      retry:
+        enabled: true
+server:
+  port: 10191
+knife4j:
+  enable: true
+  openapi:
+    title: Knife4j官方文档
+    description: "`我是测试`,**你知道吗**
+    # aaa"
+    email: xiaoymin@foxmail.com
+    concat: 八一菜刀
+    url: https://docs.xiaominfo.com
+    version: v4.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
+    group:
+      path:
+        group-name: default
+        path-rule: ant
+        path-rule-resources:
+          - /**
+  production: false
+  setting:
+    enable-debug: true
+  cors: true

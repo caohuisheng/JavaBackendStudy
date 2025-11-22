@@ -1,0 +1,359 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "XXX用户系统API",
+    "description": "Knife4j集成springdoc-openapi示例",
+    "termsOfService": "http://doc.xiaominfo.com",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://doc.xiaominfo.com"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://192.168.10.105:17812",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/test/module/upload3": {
+      "post": {
+        "tags": [
+          "测试模块"
+        ],
+        "summary": "测试一下3",
+        "operationId": "fileModule3",
+        "parameters": [
+          {
+            "name": "fileResp",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MyBodyTest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test/module/upload2": {
+      "post": {
+        "tags": [
+          "测试模块"
+        ],
+        "summary": "测试一下2",
+        "operationId": "fileModule2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MyBodyTest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test/module/upload1": {
+      "post": {
+        "tags": [
+          "测试模块"
+        ],
+        "summary": "测试一下1",
+        "operationId": "fileModule1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/文件name"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test/module/upload": {
+      "post": {
+        "tags": [
+          "测试模块"
+        ],
+        "summary": "测试一下",
+        "operationId": "fileModule",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fileRequestVo": {
+                    "$ref": "#/components/schemas/FileRequestVo"
+                  },
+                  "fileResp": {
+                    "$ref": "#/components/schemas/文件name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-orangeforms": {
+          "fileModuleDynamicReq": {
+            "type": "object",
+            "properties": {
+              "fileRequestVo": {
+                "$ref": "#/components/schemas/FileRequestVo"
+              },
+              "fileResp": {
+                "$ref": "#/components/schemas/文件name"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test/description": {
+      "post": {
+        "tags": [
+          "测试模块"
+        ],
+        "summary": "描述1",
+        "operationId": "description",
+        "parameters": [
+          {
+            "name": "sortType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "描述"
+            }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "页码",
+              "example": 1
+            },
+            "example": 1
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "分页大小",
+              "example": 20
+            },
+            "example": 20
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/修改分页查询参数"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "x-abb": 14
+  },
+  "components": {
+    "schemas": {
+      "FileRequestVo": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "module": {
+            "type": "string",
+            "description": "模块"
+          },
+          "bizNo": {
+            "type": "string"
+          },
+          "bizType": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MyBodyTest": {
+        "type": "object",
+        "properties": {
+          "fileResp": {
+            "$ref": "#/components/schemas/文件name"
+          },
+          "requestVo": {
+            "$ref": "#/components/schemas/FileRequestVo"
+          }
+        }
+      },
+      "文件name": {
+        "type": "object",
+        "properties": {
+          "random": {
+            "type": "string",
+            "description": "随机名称"
+          },
+          "name": {
+            "type": "string",
+            "description": "文件名称"
+          },
+          "size": {
+            "type": "integer",
+            "description": "文件大小",
+            "format": "int64"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "是否上传成功"
+          }
+        },
+        "description": "文件对象"
+      },
+      "修改分页查询参数": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "description": "页码",
+            "format": "int64",
+            "example": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "分页大小",
+            "format": "int64",
+            "example": 20
+          },
+          "sortType": {
+            "type": "string",
+            "description": "描述"
+          }
+        }
+      }
+    }
+  },
+  "x-test123": "333",
+  "x-openapi": {
+    "x-setting": {
+      "customCode": 200,
+      "language": "zh-CN",
+      "enableSwaggerModels": true,
+      "swaggerModelName": "实体类列表",
+      "enableReloadCacheParameter": false,
+      "enableAfterScript": true,
+      "enableDocumentManage": true,
+      "enableVersion": false,
+      "enableRequestCache": true,
+      "enableFilterMultipartApis": false,
+      "enableFilterMultipartApiMethodType": "POST",
+      "enableHost": false,
+      "enableHostText": "",
+      "enableDynamicParameter": false,
+      "enableDebug": true,
+      "enableFooter": true,
+      "enableFooterCustom": false,
+      "enableSearch": true,
+      "enableOpenApi": true,
+      "enableHomeCustom": false,
+      "enableGroup": true,
+      "enableResponseCode": true
+    },
+    "x-markdownFiles": [
+      {
+        "group": "default",
+        "name": "标题1",
+        "children": [
+          {
+            "title": "测试以下文档",
+            "content": "# 测试以下文档\n\n\n我是内容"
+          },
+          {
+            "title": "测试以下文档1",
+            "content": "# 测试以下文档1\n\n\n我是内容1"
+          }
+        ]
+      },
+      {
+        "group": "用户模块",
+        "name": "标题2",
+        "children": [
+          {
+            "title": "测试以下文档1111",
+            "content": "# 测试以下文档1111\n\n\n我是内容1111"
+          },
+          {
+            "title": "测试以下文档1222",
+            "content": "# 测试以下文档1222\n\n\n我是内容1222"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "components": {
+    "securitySchemes": {
+      "knife4jOAS3Oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://petstore3.swagger.io/oauth/authorize",
+            "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "_classByIdUsernamerequest": {
+        "properties": {
+          "classId": {
+            "format": "int32",
+            "description": "班级Id",
+            "type": "integer"
+          },
+          "nameList": {
+            "description": "学生名称",
+            "type": "array",
+            "items": {}
+          }
+        }
+      },
+      "_userInforequest": {},
+      "_classByIdUsernameresponse": {
+        "properties": {
+          "code": {
+            "format": "int32",
+            "description": "状态码",
+            "type": "integer"
+          },
+          "msg": {
+            "format": "string",
+            "description": "消息",
+            "type": "string"
+          },
+          "data": {
+            "description": "数据(object)",
+            "type": "object",
+            "properties": {
+              "classId": {
+                "format": "int32",
+                "description": "班级Id",
+                "type": "integer"
+              },
+              "className": {
+                "format": "string",
+                "description": "班级名称",
+                "type": "string"
+              },
+              "userList": {
+                "description": "班级学生,你就假装是学生呗",
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "id": {
+                      "format": "int32",
+                      "description": "id",
+                      "type": "integer"
+                    },
+                    "username": {
+                      "format": "string",
+                      "description": "用户名",
+                      "type": "string"
+                    },
+                    "company": {
+                      "format": "string",
+                      "description": "公司",
+                      "type": "string"
+                    },
+                    "mail": {
+                      "format": "string",
+                      "description": "邮箱",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "_admin_area_detailresponse": {
+        "properties": {
+          "success": {
+            "format": "boolean",
+            "description": "请求是否成功",
+            "type": "boolean"
+          },
+          "code": {
+            "format": "string",
+            "description": "响应状态码",
+            "type": "string"
+          },
+          "msg": {
+            "format": "string",
+            "description": "响应信息",
+            "type": "string"
+          },
+          "data": {
+            "description": "响应数据(object)",
+            "type": "object",
+            "properties": {
+              "areaCode": {
+                "format": "string",
+                "description": "行政代码",
+                "type": "string"
+              },
+              "areaName": {
+                "format": "string",
+                "description": "区域名称",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "_userInfoByIdresponse": {
+        "properties": {
+          "code": {
+            "format": "int32",
+            "description": "状态码",
+            "type": "integer"
+          },
+          "msg": {
+            "format": "string",
+            "description": "消息",
+            "type": "string"
+          },
+          "data": {
+            "description": "数据(object)",
+            "type": "object",
+            "properties": {
+              "id": {
+                "format": "int32",
+                "description": "id",
+                "type": "integer"
+              },
+              "username": {
+                "format": "string",
+                "description": "用户名",
+                "type": "string"
+              },
+              "company": {
+                "format": "string",
+                "description": "公司",
+                "type": "string"
+              },
+              "mail": {
+                "format": "string",
+                "description": "邮箱",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "_userInforesponse": {
+        "properties": {
+          "code": {
+            "format": "int32",
+            "description": "状态码",
+            "type": "integer"
+          },
+          "msg": {
+            "format": "string",
+            "description": "消息",
+            "type": "string"
+          },
+          "data": {
+            "description": "数据",
+            "type": "array",
+            "items": {
+              "properties": {
+                "id": {
+                  "format": "int32",
+                  "description": "id",
+                  "type": "integer"
+                },
+                "username": {
+                  "format": "string",
+                  "description": "用户名",
+                  "type": "string"
+                },
+                "company": {
+                  "format": "string",
+                  "description": "公司",
+                  "type": "string"
+                },
+                "mail": {
+                  "format": "string",
+                  "description": "邮箱",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "_userInfoByIdrequest": {}
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:9090"
+    }
+  ],
+  "openapi": "3.0.3",
+  "paths": {
+    "/userInfo": {
+      "get": {
+        "summary": "获得用户对象",
+        "deprecated": false,
+        "description": "获得用户对象",
+        "tags": [
+          "User 用户接口"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/_userInforesponse"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "{\n  \"code\": 714,\n  \"msg\": \"rov5nr\",\n  \"data\": [\n    {\n      \"id\": 15,\n      \"username\": \"malcolm.sawayn\",\n      \"company\": \"Bednar-Kshlerin\",\n      \"mail\": \"ttpsiv\"\n    }\n  ]\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "a89ed4c666e7345f26de38c380586332",
+        "parameters": [
+          {
+            "schema": {
+              "format": "string",
+              "type": "string"
+            },
+            "in": "header",
+            "description": "desc",
+            "required": true,
+            "example": "leon",
+            "name": "token"
+          }
+        ]
+      }
+    },
+    "/userInfoById": {
+      "get": {
+        "summary": "根据Id获得用户信息",
+        "deprecated": false,
+        "description": "根据Id获得用户信息",
+        "tags": [
+          "User 用户接口"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/_admin_area_detailresponse"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "{\n  \"code\": 733,\n  \"msg\": \"ef9a12\",\n  \"data\": {\n    \"id\": 861,\n    \"username\": \"malcolm.sawayn\",\n    \"company\": \"Bednar-Kshlerin\",\n    \"mail\": \"k54d7l\"\n  }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "8a723d2014d5224c14157f82ad9a8b90",
+        "parameters": [
+          {
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "query",
+            "description": "用户Id",
+            "required": false,
+            "example": "625",
+            "name": "id"
+          },
+          {
+            "schema": {
+              "format": "string",
+              "type": "string"
+            },
+            "in": "header",
+            "description": "desc",
+            "required": true,
+            "example": "leon",
+            "name": "token"
+          }
+        ]
+      }
+    },
+    "/userInfoById1": {
+      "get": {
+        "summary": "根据Id获得用户信息1",
+        "deprecated": false,
+        "description": "根据Id获得用户信息",
+        "tags": [
+          "User 用户接口"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/_userInfoByIdresponse"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "{\n  \"code\": 733,\n  \"msg\": \"ef9a12\",\n  \"data\": {\n    \"id\": 861,\n    \"username\": \"malcolm.sawayn\",\n    \"company\": \"Bednar-Kshlerin\",\n    \"mail\": \"k54d7l\"\n  }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "8a723d2014d5224c14157f82ad9a8b90",
+        "parameters": [
+          {
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "query",
+            "description": "用户Id",
+            "required": false,
+            "example": "625",
+            "name": "id"
+          },
+          {
+            "schema": {
+              "format": "string",
+              "type": "string"
+            },
+            "in": "header",
+            "description": "desc",
+            "required": true,
+            "example": "leon",
+            "name": "token"
+          }
+        ]
+      }
+    },
+    "/classByIdUsername": {
+      "post": {
+        "summary": "根据班级Id,与学生名称获得数据",
+        "deprecated": false,
+        "description": "根据班级Id,与学生名称获得数据",
+        "tags": [
+          "User 用户接口"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json; charset\u003dutf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/_classByIdUsernamerequest"
+              },
+              "examples": {
+                "json": {
+                  "summary": "test data",
+                  "value": "{\n  \"classId\": 576,\n  \"nameList\": [\n    \"yp6aup\"\n  ]\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/_classByIdUsernameresponse"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "{\n  \"code\": 625,\n  \"msg\": \"327n07\",\n  \"data\": {\n    \"classId\": 467,\n    \"className\": \"malcolm.sawayn\",\n    \"userList\": [\n      {\n        \"id\": 64,\n        \"username\": \"malcolm.sawayn\",\n        \"company\": \"Bednar-Kshlerin\",\n        \"mail\": \"zyw841\"\n      }\n    ]\n  }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "31dfcbd907272faabaaf101030489f8c",
+        "parameters": [
+          {
+            "schema": {
+              "format": "string",
+              "type": "string"
+            },
+            "in": "header",
+            "description": "desc",
+            "required": true,
+            "example": "leon",
+            "name": "token"
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "百草味 - api文档",
+    "version": "1.0.0"
+  }
+}

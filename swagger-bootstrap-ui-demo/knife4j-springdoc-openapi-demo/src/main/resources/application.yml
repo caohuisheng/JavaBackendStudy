@@ -1,0 +1,52 @@
+server:
+  port: 17812
+  servlet:
+    context-path: /
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: knife4j-openapi3
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    show-extensions: true
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.xiaominfo.knife4j.demo.web
+  default-flat-param-object: false
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    swagger-model-name: 实体类列表
+    home-custom-path:
+  documents:
+    - name: 标题1
+      locations: classpath:markdown/*
+      group: default
+    - name: 标题2
+      locations: classpath:markdown1/*
+      group: 用户模块
+  basic:
+    enable: false
+    username: zhangsan
+    password: lisi
+  # 自动上传OpenAPI数据源到Knife4jInsight平台中
+  # 参考文档：http://knife4j.net
+  insight:
+    enable: false
+    namespace: knife4j-demo-openapi3
+    server: http://localhost:10086
+    secret: BudeU0urM30JTQ+YPZu1GddkG8h0fMgWuYeViSO4Y7Q=
+    service-name: knife4j-demo-openapi3

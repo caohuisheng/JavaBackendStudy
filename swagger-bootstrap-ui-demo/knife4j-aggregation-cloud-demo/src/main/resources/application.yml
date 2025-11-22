@@ -1,0 +1,27 @@
+server:
+  port: 19081
+  servlet:
+    context-path: /abc
+knife4j:
+  cloud:
+    enable: true
+    routes:
+      - name: 测试分组1
+        uri: http://localhost:8990
+        location: /v2/api-docs?group=根据包名
+        order: 1
+      - name: 测试分组2
+        uri: http://localhost:8990
+        debug-url: http://localhost:8990
+        location: /v2/api-docs?group=根据注解
+        order: 2
+      - name: openapi3
+        uri: http://localhost:17812
+        location: /v3/api-docs/default
+        order: 3
+  connection-setting:
+    socket-timeout: 20000
+    connect-timeout: 20000
+    max-connection-total: 200
+    max-pre-route: 20
+  enable-aggregation: true

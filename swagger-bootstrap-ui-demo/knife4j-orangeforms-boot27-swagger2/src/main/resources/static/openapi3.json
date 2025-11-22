@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "nengwei-admin api",
+    "version": "V1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/auth/resource/page": {
+      "get": {
+        "tags": [
+          "资源API"
+        ],
+        "summary": "获取当前用户资源",
+        "operationId": "getResourcePage",
+        "parameters": [
+          {
+            "name": "X-AppKey",
+            "in": "header",
+            "description": "appKey,用户id",
+            "required": false,
+            "example": {
+              "value": "92839239299329"
+            },
+            "schema": {
+              "type": "string",
+              "default": "wedwef"
+            }
+          },
+          {
+            "name": "X-AppToken",
+            "in": "header",
+            "description": "appToken,登录token",
+            "required": false,
+            "example": "92882839239923"
+          },
+          {
+            "name": "pageParam",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PageParam"
+            }
+          },
+          {
+            "name": "resource",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicScheme": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {}
+}

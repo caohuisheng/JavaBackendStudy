@@ -1,0 +1,2800 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "橙单单体服务工程详情",
+    "version": "1.0",
+    "title": "橙单单体服务工程"
+  },
+  "host": "localhost:8082",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "全局字典管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "在线用户接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "数据权限管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "权限字管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "权限资源模块管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "权限资源管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "用户登录接口",
+      "x-order": "1"
+    },
+    {
+      "name": "用户管理管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "菜单管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "角色管理接口",
+      "x-order": "2147483647"
+    },
+    {
+      "name": "部门管理管理接口",
+      "x-order": "2147483647"
+    }
+  ],
+  "paths": {
+    "/admin/upms/sysDataPerm/add": {
+      "post": {
+        "tags": [
+          "数据权限管理接口"
+        ],
+        "summary": "add",
+        "operationId": "addUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "SysDataPermControllerAdd",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SysDataPermControllerAdd",
+              "originalRef": "SysDataPermControllerAdd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseResult«long»",
+              "originalRef": "ResponseResult«long»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "responsesObject": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseResult«long»",
+              "originalRef": "ResponseResult«long»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false,
+        "x-ignoreParameters": [
+          {
+            "sysDataPermDto.searchString": true,
+            "sysDataPermDto.createTimeStart": true,
+            "sysDataPermDto.createTimeEnd": true,
+            "sysDataPermDto.dataPermId": true
+          }
+        ],
+        "x-order": "2147483647"
+      }
+    }
+  },
+  "definitions": {
+    "GlobalDictControllerAdd": {
+      "type": "object",
+      "properties": {
+        "globalDictDto": {
+          "$ref": "#/definitions/全局系统字典Dto",
+          "originalRef": "全局系统字典Dto"
+        }
+      },
+      "title": "GlobalDictControllerAdd"
+    },
+    "GlobalDictControllerAddItem": {
+      "type": "object",
+      "properties": {
+        "globalDictItemDto": {
+          "$ref": "#/definitions/全局系统字典项目Dto",
+          "originalRef": "全局系统字典项目Dto"
+        }
+      },
+      "title": "GlobalDictControllerAddItem"
+    },
+    "GlobalDictControllerDelete": {
+      "type": "object",
+      "properties": {
+        "dictId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GlobalDictControllerDelete"
+    },
+    "GlobalDictControllerDeleteItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GlobalDictControllerDeleteItem"
+    },
+    "GlobalDictControllerList": {
+      "type": "object",
+      "properties": {
+        "globalDictDtoFilter": {
+          "$ref": "#/definitions/全局系统字典Dto",
+          "originalRef": "全局系统字典Dto"
+        },
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        }
+      },
+      "title": "GlobalDictControllerList"
+    },
+    "GlobalDictControllerListDictByIds": {
+      "type": "object",
+      "properties": {
+        "dictCode": {
+          "type": "string"
+        },
+        "itemIds": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "title": "GlobalDictControllerListDictByIds"
+    },
+    "GlobalDictControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "globalDictDto": {
+          "$ref": "#/definitions/全局系统字典Dto",
+          "originalRef": "全局系统字典Dto"
+        }
+      },
+      "title": "GlobalDictControllerUpdate"
+    },
+    "GlobalDictControllerUpdateItem": {
+      "type": "object",
+      "properties": {
+        "globalDictItemDto": {
+          "$ref": "#/definitions/全局系统字典项目Dto",
+          "originalRef": "全局系统字典项目Dto"
+        }
+      },
+      "title": "GlobalDictControllerUpdateItem"
+    },
+    "GlobalDictControllerUpdateItemStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GlobalDictControllerUpdateItemStatus"
+    },
+    "JSONObject": {
+      "type": "object",
+      "title": "JSONObject",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "LoginControllerChangePassword": {
+      "type": "object",
+      "properties": {
+        "newPass": {
+          "type": "string"
+        },
+        "oldPass": {
+          "type": "string"
+        }
+      },
+      "title": "LoginControllerChangePassword"
+    },
+    "LoginControllerDoLogin": {
+      "type": "object",
+      "properties": {
+        "captchaVerification": {
+          "type": "string"
+        },
+        "loginName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "LoginControllerDoLogin"
+    },
+    "LoginUserControllerDelete": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        }
+      },
+      "title": "LoginUserControllerDelete"
+    },
+    "LoginUserControllerList": {
+      "type": "object",
+      "properties": {
+        "loginName": {
+          "type": "string"
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        }
+      },
+      "title": "LoginUserControllerList"
+    },
+    "LoginUserInfo": {
+      "type": "object",
+      "properties": {
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deviceType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "loginIp": {
+          "type": "string"
+        },
+        "loginName": {
+          "type": "string"
+        },
+        "loginTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "showName": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "LoginUserInfo"
+    },
+    "Map«string,object»": {
+      "type": "object",
+      "title": "Map«string,object»",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_1": {
+      "type": "object",
+      "title": "Map«string,object»_1",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_10": {
+      "type": "object",
+      "title": "Map«string,object»_10",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_11": {
+      "type": "object",
+      "title": "Map«string,object»_11",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_12": {
+      "type": "object",
+      "title": "Map«string,object»_12",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_13": {
+      "type": "object",
+      "title": "Map«string,object»_13",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_14": {
+      "type": "object",
+      "title": "Map«string,object»_14",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_15": {
+      "type": "object",
+      "title": "Map«string,object»_15",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_16": {
+      "type": "object",
+      "title": "Map«string,object»_16",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_17": {
+      "type": "object",
+      "title": "Map«string,object»_17",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_18": {
+      "type": "object",
+      "title": "Map«string,object»_18",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_19": {
+      "type": "object",
+      "title": "Map«string,object»_19",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_2": {
+      "type": "object",
+      "title": "Map«string,object»_2",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_20": {
+      "type": "object",
+      "title": "Map«string,object»_20",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_21": {
+      "type": "object",
+      "title": "Map«string,object»_21",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_22": {
+      "type": "object",
+      "title": "Map«string,object»_22",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_23": {
+      "type": "object",
+      "title": "Map«string,object»_23",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_24": {
+      "type": "object",
+      "title": "Map«string,object»_24",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_25": {
+      "type": "object",
+      "title": "Map«string,object»_25",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_26": {
+      "type": "object",
+      "title": "Map«string,object»_26",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_27": {
+      "type": "object",
+      "title": "Map«string,object»_27",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_28": {
+      "type": "object",
+      "title": "Map«string,object»_28",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_29": {
+      "type": "object",
+      "title": "Map«string,object»_29",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_3": {
+      "type": "object",
+      "title": "Map«string,object»_3",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_30": {
+      "type": "object",
+      "title": "Map«string,object»_30",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_31": {
+      "type": "object",
+      "title": "Map«string,object»_31",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_32": {
+      "type": "object",
+      "title": "Map«string,object»_32",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_33": {
+      "type": "object",
+      "title": "Map«string,object»_33",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_34": {
+      "type": "object",
+      "title": "Map«string,object»_34",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_35": {
+      "type": "object",
+      "title": "Map«string,object»_35",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_36": {
+      "type": "object",
+      "title": "Map«string,object»_36",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_4": {
+      "type": "object",
+      "title": "Map«string,object»_4",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_5": {
+      "type": "object",
+      "title": "Map«string,object»_5",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_6": {
+      "type": "object",
+      "title": "Map«string,object»_6",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_7": {
+      "type": "object",
+      "title": "Map«string,object»_7",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_8": {
+      "type": "object",
+      "title": "Map«string,object»_8",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,object»_9": {
+      "type": "object",
+      "title": "Map«string,object»_9",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "MyPageData«LoginUserInfo»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoginUserInfo",
+            "originalRef": "LoginUserInfo"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«LoginUserInfo»"
+    },
+    "MyPageData«SysDeptVO视图对象»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SysDeptVO视图对象",
+            "originalRef": "SysDeptVO视图对象"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«SysDeptVO视图对象»"
+    },
+    "MyPageData«SysUserVO视图对象»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SysUserVO视图对象",
+            "originalRef": "SysUserVO视图对象"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«SysUserVO视图对象»"
+    },
+    "MyPageData«全局系统字典Vo»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/全局系统字典Vo",
+            "originalRef": "全局系统字典Vo"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«全局系统字典Vo»"
+    },
+    "MyPageData«数据权限VO»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/数据权限VO",
+            "originalRef": "数据权限VO"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«数据权限VO»"
+    },
+    "MyPageData«权限资源VO»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/权限资源VO",
+            "originalRef": "权限资源VO"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«权限资源VO»"
+    },
+    "MyPageData«角色VO»": {
+      "type": "object",
+      "properties": {
+        "dataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/角色VO",
+            "originalRef": "角色VO"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MyPageData«角色VO»"
+    },
+    "MyPageParam": {
+      "type": "object",
+      "properties": {
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "MyPageParam"
+    },
+    "OrderInfo": {
+      "type": "object",
+      "properties": {
+        "asc": {
+          "type": "boolean"
+        },
+        "dateAggregateBy": {
+          "type": "string"
+        },
+        "fieldName": {
+          "type": "string"
+        }
+      },
+      "title": "OrderInfo"
+    },
+    "ResponseResult«JSONObject»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«JSONObject»"
+    },
+    "ResponseResult«List«Map«string,object»»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«List«Map«string,object»»»"
+    },
+    "ResponseResult«List«long»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«List«long»»"
+    },
+    "ResponseResult«List«权限字VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/权限字VO",
+            "originalRef": "权限字VO"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«List«权限字VO»»"
+    },
+    "ResponseResult«List«权限资源模块VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/权限资源模块VO",
+            "originalRef": "权限资源模块VO"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«List«权限资源模块VO»»"
+    },
+    "ResponseResult«List«菜单VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/菜单VO",
+            "originalRef": "菜单VO"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«List«菜单VO»»"
+    },
+    "ResponseResult«MyPageData«LoginUserInfo»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«LoginUserInfo»",
+          "originalRef": "MyPageData«LoginUserInfo»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«LoginUserInfo»»"
+    },
+    "ResponseResult«MyPageData«SysDeptVO视图对象»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«SysDeptVO视图对象»",
+          "originalRef": "MyPageData«SysDeptVO视图对象»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«SysDeptVO视图对象»»"
+    },
+    "ResponseResult«MyPageData«SysUserVO视图对象»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«SysUserVO视图对象»",
+          "originalRef": "MyPageData«SysUserVO视图对象»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«SysUserVO视图对象»»"
+    },
+    "ResponseResult«MyPageData«全局系统字典Vo»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«全局系统字典Vo»",
+          "originalRef": "MyPageData«全局系统字典Vo»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«全局系统字典Vo»»"
+    },
+    "ResponseResult«MyPageData«数据权限VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«数据权限VO»",
+          "originalRef": "MyPageData«数据权限VO»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«数据权限VO»»"
+    },
+    "ResponseResult«MyPageData«权限资源VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«权限资源VO»",
+          "originalRef": "MyPageData«权限资源VO»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«权限资源VO»»"
+    },
+    "ResponseResult«MyPageData«角色VO»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MyPageData«角色VO»",
+          "originalRef": "MyPageData«角色VO»"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«MyPageData«角色VO»»"
+    },
+    "ResponseResult«SysDeptVO视图对象»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/SysDeptVO视图对象",
+          "originalRef": "SysDeptVO视图对象"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«SysDeptVO视图对象»"
+    },
+    "ResponseResult«SysUserVO视图对象»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/SysUserVO视图对象",
+          "originalRef": "SysUserVO视图对象"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«SysUserVO视图对象»"
+    },
+    "ResponseResult«Void»": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«Void»"
+    },
+    "ResponseResult«boolean»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "boolean"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«boolean»"
+    },
+    "ResponseResult«long»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«long»"
+    },
+    "ResponseResult«数据权限VO»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/数据权限VO",
+          "originalRef": "数据权限VO"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«数据权限VO»"
+    },
+    "ResponseResult«权限字VO»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/权限字VO",
+          "originalRef": "权限字VO"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«权限字VO»"
+    },
+    "ResponseResult«权限资源VO»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/权限资源VO",
+          "originalRef": "权限资源VO"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«权限资源VO»"
+    },
+    "ResponseResult«菜单VO»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/菜单VO",
+          "originalRef": "菜单VO"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«菜单VO»"
+    },
+    "ResponseResult«角色VO»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/角色VO",
+          "originalRef": "角色VO"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ResponseResult«角色VO»"
+    },
+    "SysDataPermControllerAdd": {
+      "type": "object",
+      "properties": {
+        "deptIdListString": {
+          "type": "string"
+        },
+        "menuIdListString": {
+          "type": "string"
+        },
+        "sysDataPermDto": {
+          "$ref": "#/definitions/数据权限Dto",
+          "originalRef": "数据权限Dto"
+        }
+      },
+      "title": "SysDataPermControllerAdd"
+    },
+    "SysDataPermControllerAddDataPermUser": {
+      "type": "object",
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userIdListString": {
+          "type": "string"
+        }
+      },
+      "title": "SysDataPermControllerAddDataPermUser"
+    },
+    "SysDataPermControllerDelete": {
+      "type": "object",
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysDataPermControllerDelete"
+    },
+    "SysDataPermControllerDeleteDataPermUser": {
+      "type": "object",
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysDataPermControllerDeleteDataPermUser"
+    },
+    "SysDataPermControllerList": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysDataPermDtoFilter": {
+          "$ref": "#/definitions/数据权限Dto",
+          "originalRef": "数据权限Dto"
+        }
+      },
+      "title": "SysDataPermControllerList"
+    },
+    "SysDataPermControllerListDataPermUser": {
+      "type": "object",
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysUserDtoFilter": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysDataPermControllerListDataPermUser"
+    },
+    "SysDataPermControllerListNotInDataPermUser": {
+      "type": "object",
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysUserDtoFilter": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysDataPermControllerListNotInDataPermUser"
+    },
+    "SysDataPermControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "deptIdListString": {
+          "type": "string"
+        },
+        "menuIdListString": {
+          "type": "string"
+        },
+        "sysDataPermDto": {
+          "$ref": "#/definitions/数据权限Dto",
+          "originalRef": "数据权限Dto"
+        }
+      },
+      "title": "SysDataPermControllerUpdate"
+    },
+    "SysDeptControllerAdd": {
+      "type": "object",
+      "properties": {
+        "sysDeptDto": {
+          "$ref": "#/definitions/SysDeptDto对象",
+          "originalRef": "SysDeptDto对象"
+        }
+      },
+      "title": "SysDeptControllerAdd"
+    },
+    "SysDeptControllerDelete": {
+      "type": "object",
+      "properties": {
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysDeptControllerDelete"
+    },
+    "SysDeptControllerList": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysDeptDtoFilter": {
+          "$ref": "#/definitions/SysDeptDto对象",
+          "originalRef": "SysDeptDto对象"
+        }
+      },
+      "title": "SysDeptControllerList"
+    },
+    "SysDeptControllerListDictByIds": {
+      "type": "object",
+      "properties": {
+        "dictIds": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "title": "SysDeptControllerListDictByIds"
+    },
+    "SysDeptControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "sysDeptDto": {
+          "$ref": "#/definitions/SysDeptDto对象",
+          "originalRef": "SysDeptDto对象"
+        }
+      },
+      "title": "SysDeptControllerUpdate"
+    },
+    "SysDeptDto对象": {
+      "type": "object",
+      "required": [
+        "cityId",
+        "deptId",
+        "deptName",
+        "provinceId",
+        "showOrder"
+      ],
+      "properties": {
+        "cityId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "所属城市Id"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "部门Id"
+        },
+        "deptName": {
+          "type": "string",
+          "description": "部门名称"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "父部门Id"
+        },
+        "provinceId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "所在省Id"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        }
+      },
+      "title": "SysDeptDto对象"
+    },
+    "SysDeptVO视图对象": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "所属城市Id"
+        },
+        "cityIdDictMap": {
+          "type": "object",
+          "description": "cityId 字典关联数据"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建用户Id"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "部门Id"
+        },
+        "deptName": {
+          "type": "string",
+          "description": "部门名称"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "父部门Id"
+        },
+        "provinceId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "所在省Id"
+        },
+        "provinceIdDictMap": {
+          "type": "object",
+          "description": "provinceId 字典关联数据"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "SysDeptVO视图对象"
+    },
+    "SysMenuControllerAdd": {
+      "type": "object",
+      "properties": {
+        "permCodeIdListString": {
+          "type": "string"
+        },
+        "sysMenuDto": {
+          "$ref": "#/definitions/菜单Dto",
+          "originalRef": "菜单Dto"
+        }
+      },
+      "title": "SysMenuControllerAdd"
+    },
+    "SysMenuControllerDelete": {
+      "type": "object",
+      "properties": {
+        "menuId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysMenuControllerDelete"
+    },
+    "SysMenuControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "permCodeIdListString": {
+          "type": "string"
+        },
+        "sysMenuDto": {
+          "$ref": "#/definitions/菜单Dto",
+          "originalRef": "菜单Dto"
+        }
+      },
+      "title": "SysMenuControllerUpdate"
+    },
+    "SysPermCodeControllerAdd": {
+      "type": "object",
+      "properties": {
+        "permIdListString": {
+          "type": "string"
+        },
+        "sysPermCodeDto": {
+          "$ref": "#/definitions/权限字Dto",
+          "originalRef": "权限字Dto"
+        }
+      },
+      "title": "SysPermCodeControllerAdd"
+    },
+    "SysPermCodeControllerDelete": {
+      "type": "object",
+      "properties": {
+        "permCodeId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysPermCodeControllerDelete"
+    },
+    "SysPermCodeControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "permIdListString": {
+          "type": "string"
+        },
+        "sysPermCodeDto": {
+          "$ref": "#/definitions/权限字Dto",
+          "originalRef": "权限字Dto"
+        }
+      },
+      "title": "SysPermCodeControllerUpdate"
+    },
+    "SysPermControllerAdd": {
+      "type": "object",
+      "properties": {
+        "sysPermDto": {
+          "$ref": "#/definitions/权限资源Dto",
+          "originalRef": "权限资源Dto"
+        }
+      },
+      "title": "SysPermControllerAdd"
+    },
+    "SysPermControllerDelete": {
+      "type": "object",
+      "properties": {
+        "permId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysPermControllerDelete"
+    },
+    "SysPermControllerList": {
+      "type": "object",
+      "properties": {
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysPermDtoFilter": {
+          "$ref": "#/definitions/权限资源Dto",
+          "originalRef": "权限资源Dto"
+        }
+      },
+      "title": "SysPermControllerList"
+    },
+    "SysPermControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "sysPermDto": {
+          "$ref": "#/definitions/权限资源Dto",
+          "originalRef": "权限资源Dto"
+        }
+      },
+      "title": "SysPermControllerUpdate"
+    },
+    "SysPermModuleControllerAdd": {
+      "type": "object",
+      "properties": {
+        "sysPermModuleDto": {
+          "$ref": "#/definitions/权限资源模块Dto",
+          "originalRef": "权限资源模块Dto"
+        }
+      },
+      "title": "SysPermModuleControllerAdd"
+    },
+    "SysPermModuleControllerDelete": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysPermModuleControllerDelete"
+    },
+    "SysPermModuleControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "sysPermModuleDto": {
+          "$ref": "#/definitions/权限资源模块Dto",
+          "originalRef": "权限资源模块Dto"
+        }
+      },
+      "title": "SysPermModuleControllerUpdate"
+    },
+    "SysRoleControllerAdd": {
+      "type": "object",
+      "properties": {
+        "menuIdListString": {
+          "type": "string"
+        },
+        "sysRoleDto": {
+          "$ref": "#/definitions/角色Dto",
+          "originalRef": "角色Dto"
+        }
+      },
+      "title": "SysRoleControllerAdd"
+    },
+    "SysRoleControllerAddUserRole": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userIdListString": {
+          "type": "string"
+        }
+      },
+      "title": "SysRoleControllerAddUserRole"
+    },
+    "SysRoleControllerDelete": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysRoleControllerDelete"
+    },
+    "SysRoleControllerDeleteUserRole": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysRoleControllerDeleteUserRole"
+    },
+    "SysRoleControllerList": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysRoleDtoFilter": {
+          "$ref": "#/definitions/角色Dto",
+          "originalRef": "角色Dto"
+        }
+      },
+      "title": "SysRoleControllerList"
+    },
+    "SysRoleControllerListDictByIds": {
+      "type": "object",
+      "properties": {
+        "dictIds": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "title": "SysRoleControllerListDictByIds"
+    },
+    "SysRoleControllerListNotInUserRole": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sysUserDtoFilter": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysRoleControllerListNotInUserRole"
+    },
+    "SysRoleControllerListUserRole": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sysUserDtoFilter": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysRoleControllerListUserRole"
+    },
+    "SysRoleControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "menuIdListString": {
+          "type": "string"
+        },
+        "sysRoleDto": {
+          "$ref": "#/definitions/角色Dto",
+          "originalRef": "角色Dto"
+        }
+      },
+      "title": "SysRoleControllerUpdate"
+    },
+    "SysUserControllerAdd": {
+      "type": "object",
+      "properties": {
+        "dataPermIdListString": {
+          "type": "string"
+        },
+        "roleIdListString": {
+          "type": "string"
+        },
+        "sysUserDto": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysUserControllerAdd"
+    },
+    "SysUserControllerDelete": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysUserControllerDelete"
+    },
+    "SysUserControllerList": {
+      "type": "object",
+      "properties": {
+        "orderParam": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInfo",
+            "originalRef": "OrderInfo"
+          }
+        },
+        "pageParam": {
+          "$ref": "#/definitions/MyPageParam",
+          "originalRef": "MyPageParam"
+        },
+        "sysUserDtoFilter": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        },
+        "teacherDtoFilter": {
+          "$ref": "#/definitions/TeacherDto对象",
+          "originalRef": "TeacherDto对象"
+        }
+      },
+      "title": "SysUserControllerList"
+    },
+    "SysUserControllerListDictByIds": {
+      "type": "object",
+      "properties": {
+        "dictIds": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "title": "SysUserControllerListDictByIds"
+    },
+    "SysUserControllerResetPassword": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SysUserControllerResetPassword"
+    },
+    "SysUserControllerUpdate": {
+      "type": "object",
+      "properties": {
+        "dataPermIdListString": {
+          "type": "string"
+        },
+        "roleIdListString": {
+          "type": "string"
+        },
+        "sysUserDto": {
+          "$ref": "#/definitions/SysUserDto对象",
+          "originalRef": "SysUserDto对象"
+        }
+      },
+      "title": "SysUserControllerUpdate"
+    },
+    "SysUserDto对象": {
+      "type": "object",
+      "required": [
+        "deptId",
+        "loginName",
+        "password",
+        "showName",
+        "userId",
+        "userStatus",
+        "userType"
+      ],
+      "properties": {
+        "createTimeEnd": {
+          "type": "string",
+          "description": "createTime 范围过滤结束值(<=)"
+        },
+        "createTimeStart": {
+          "type": "string",
+          "description": "createTime 范围过滤起始值(>=)"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户部门Id"
+        },
+        "headImageUrl": {
+          "type": "string",
+          "description": "用户头像的Url"
+        },
+        "loginName": {
+          "type": "string",
+          "description": "登录用户名"
+        },
+        "password": {
+          "type": "string",
+          "description": "用户密码"
+        },
+        "showName": {
+          "type": "string",
+          "description": "用户显示名称"
+        },
+        "teacherId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "老师id"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户Id"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户状态(0: 正常 1: 锁定)"
+        },
+        "userType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户类型(0: 管理员 1: 系统管理用户 2: 系统业务用户)"
+        }
+      },
+      "title": "SysUserDto对象"
+    },
+    "SysUserVO视图对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建用户Id"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户部门Id"
+        },
+        "deptIdDictMap": {
+          "type": "object",
+          "description": "deptId 字典关联数据"
+        },
+        "headImageUrl": {
+          "type": "string",
+          "description": "用户头像的Url"
+        },
+        "loginName": {
+          "type": "string",
+          "description": "登录用户名"
+        },
+        "showName": {
+          "type": "string",
+          "description": "用户显示名称"
+        },
+        "sysDataPermUserList": {
+          "type": "array",
+          "description": "多对多用户数据权限数据集合",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "sysDept": {
+          "type": "object",
+          "description": "deptId 的一对一关联数据对象，数据对应类型为SysDeptVo"
+        },
+        "sysUserRoleList": {
+          "type": "array",
+          "description": "多对多用户角色数据集合",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "teacher": {
+          "type": "object",
+          "description": "teacherId 的一对一关联数据对象，数据对应类型为TeacherVo"
+        },
+        "teacherId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "老师id"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户Id"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户状态(0: 正常 1: 锁定)"
+        },
+        "userStatusDictMap": {
+          "type": "object",
+          "description": "userStatus 常量字典关联数据"
+        },
+        "userType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户类型(0: 管理员 1: 系统管理用户 2: 系统业务用户)"
+        },
+        "userTypeDictMap": {
+          "type": "object",
+          "description": "userType 常量字典关联数据"
+        }
+      },
+      "title": "SysUserVO视图对象"
+    },
+    "TeacherDto对象": {
+      "type": "object",
+      "required": [
+        "available",
+        "birthday",
+        "gender",
+        "level",
+        "schoolId",
+        "subjectId",
+        "teacherId",
+        "teacherName",
+        "userId"
+      ],
+      "properties": {
+        "available": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否在职"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "description": "教师生日"
+        },
+        "birthdayEnd": {
+          "type": "string",
+          "description": "birthday 范围过滤结束值(<=)"
+        },
+        "birthdayStart": {
+          "type": "string",
+          "description": "birthday 范围过滤起始值(>=)"
+        },
+        "flowerCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "鲜花数量"
+        },
+        "gender": {
+          "type": "integer",
+          "format": "int32",
+          "description": "教师性别(0: 女 1: 男)"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "教师职级(0: 初级 1: 中级 2: 高级)"
+        },
+        "registerDateEnd": {
+          "type": "string",
+          "description": "registerDate 范围过滤结束值(<=)"
+        },
+        "registerDateStart": {
+          "type": "string",
+          "description": "registerDate 范围过滤起始值(>=)"
+        },
+        "schoolId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "校区Id"
+        },
+        "subjectId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所教的科目Id"
+        },
+        "teacherId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键Id"
+        },
+        "teacherName": {
+          "type": "string",
+          "description": "教师名称"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户Id"
+        }
+      },
+      "title": "TeacherDto对象"
+    },
+    "全局系统字典Dto": {
+      "type": "object",
+      "properties": {
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "dictId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键Id"
+        },
+        "dictName": {
+          "type": "string",
+          "description": "字典中文名称"
+        }
+      },
+      "title": "全局系统字典Dto"
+    },
+    "全局系统字典Vo": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建用户Id"
+        },
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "dictId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键Id"
+        },
+        "dictName": {
+          "type": "string",
+          "description": "字典中文名称"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建用户名"
+        }
+      },
+      "title": "全局系统字典Vo"
+    },
+    "全局系统字典项目Dto": {
+      "type": "object",
+      "properties": {
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键Id"
+        },
+        "itemId": {
+          "type": "string",
+          "description": "字典数据项Id"
+        },
+        "itemName": {
+          "type": "string",
+          "description": "字典数据项名称"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        }
+      },
+      "title": "全局系统字典项目Dto"
+    },
+    "数据权限Dto": {
+      "type": "object",
+      "required": [
+        "dataPermId",
+        "dataPermName",
+        "ruleType"
+      ],
+      "properties": {
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据权限Id"
+        },
+        "dataPermName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "ruleType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据权限规则类型"
+        },
+        "searchString": {
+          "type": "string",
+          "description": "LIKE 模糊搜索字符串"
+        }
+      },
+      "title": "数据权限Dto"
+    },
+    "数据权限VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "dataPermDeptList": {
+          "type": "array",
+          "description": "数据权限与部门关联对象列表",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "dataPermId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据权限Id"
+        },
+        "dataPermMenuList": {
+          "type": "array",
+          "description": "数据权限与菜单关联对象列表",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "dataPermName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "deptIdListString": {
+          "type": "string",
+          "description": "部门Id列表"
+        },
+        "ruleType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据权限规则类型"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "数据权限VO"
+    },
+    "权限字Dto": {
+      "type": "object",
+      "required": [
+        "permCode",
+        "permCodeId",
+        "permCodeType",
+        "showName",
+        "showOrder"
+      ],
+      "properties": {
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "上级权限字Id"
+        },
+        "permCode": {
+          "type": "string",
+          "description": "权限字标识"
+        },
+        "permCodeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限字Id"
+        },
+        "permCodeType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "权限字类型"
+        },
+        "showName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        }
+      },
+      "title": "权限字Dto"
+    },
+    "权限字VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "上级权限字Id"
+        },
+        "permCode": {
+          "type": "string",
+          "description": "权限字标识"
+        },
+        "permCodeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限字Id"
+        },
+        "permCodeType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "权限字类型"
+        },
+        "showName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        },
+        "sysPermCodePermList": {
+          "type": "array",
+          "description": "权限字与权限资源关联对象列表",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "权限字VO"
+    },
+    "权限资源Dto": {
+      "type": "object",
+      "required": [
+        "permId",
+        "permName",
+        "showOrder",
+        "url"
+      ],
+      "properties": {
+        "moduleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限所在的权限模块Id"
+        },
+        "permCode": {
+          "type": "string",
+          "description": "权限字"
+        },
+        "permId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限资源Id"
+        },
+        "permName": {
+          "type": "string",
+          "description": "权限资源名称"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        },
+        "url": {
+          "type": "string",
+          "description": "关联的URL"
+        }
+      },
+      "title": "权限资源Dto"
+    },
+    "权限资源VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "moduleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限所在的权限模块Id"
+        },
+        "moduleIdDictMap": {
+          "type": "object",
+          "description": "模块Id的字典关联数据"
+        },
+        "permCode": {
+          "type": "string",
+          "description": "权限字"
+        },
+        "permId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限资源Id"
+        },
+        "permName": {
+          "type": "string",
+          "description": "权限资源名称"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        },
+        "url": {
+          "type": "string",
+          "description": "关联的URL"
+        }
+      },
+      "title": "权限资源VO"
+    },
+    "权限资源模块Dto": {
+      "type": "object",
+      "required": [
+        "moduleId",
+        "moduleName",
+        "moduleType",
+        "showOrder"
+      ],
+      "properties": {
+        "moduleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限模块Id"
+        },
+        "moduleName": {
+          "type": "string",
+          "description": "权限模块名称"
+        },
+        "moduleType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "权限模块类型"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "上级权限模块Id"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        }
+      },
+      "title": "权限资源模块Dto"
+    },
+    "权限资源模块VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "moduleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "权限模块Id"
+        },
+        "moduleName": {
+          "type": "string",
+          "description": "权限模块名称"
+        },
+        "moduleType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "权限模块类型"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "上级权限模块Id"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "显示顺序"
+        },
+        "sysPermList": {
+          "type": "array",
+          "description": "权限资源对象列表",
+          "items": {
+            "$ref": "#/definitions/权限资源VO",
+            "originalRef": "权限资源VO"
+          }
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "权限资源模块VO"
+    },
+    "菜单Dto": {
+      "type": "object",
+      "required": [
+        "menuId",
+        "menuName",
+        "menuType",
+        "showOrder"
+      ],
+      "properties": {
+        "formRouterName": {
+          "type": "string",
+          "description": "前端表单路由名称"
+        },
+        "icon": {
+          "type": "string",
+          "description": "菜单显示顺序"
+        },
+        "menuId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "菜单Id"
+        },
+        "menuName": {
+          "type": "string",
+          "description": "菜单显示名称"
+        },
+        "menuType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "菜单类型"
+        },
+        "onlineFormId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "在线表单主键Id"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "父菜单Id"
+        },
+        "reportPageId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "统计页面主键Id"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "菜单显示顺序"
+        }
+      },
+      "title": "菜单Dto"
+    },
+    "菜单VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "formRouterName": {
+          "type": "string",
+          "description": "前端表单路由名称"
+        },
+        "icon": {
+          "type": "string",
+          "description": "菜单显示顺序"
+        },
+        "menuId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "菜单Id"
+        },
+        "menuName": {
+          "type": "string",
+          "description": "菜单显示名称"
+        },
+        "menuType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "菜单类型"
+        },
+        "onlineFormId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "在线表单主键Id"
+        },
+        "onlineMenuPermType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "在线表单菜单的权限控制类型"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "父菜单Id"
+        },
+        "reportPageId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "统计页面主键Id"
+        },
+        "showOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "菜单显示顺序"
+        },
+        "sysMenuPermCodeList": {
+          "type": "array",
+          "description": "菜单与权限字关联对象列表",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "菜单VO"
+    },
+    "角色Dto": {
+      "type": "object",
+      "required": [
+        "roleId",
+        "roleName"
+      ],
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "角色Id"
+        },
+        "roleName": {
+          "type": "string",
+          "description": "角色名称"
+        }
+      },
+      "title": "角色Dto"
+    },
+    "角色VO": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建者Id"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "角色Id"
+        },
+        "roleName": {
+          "type": "string",
+          "description": "角色名称"
+        },
+        "sysRoleMenuList": {
+          "type": "array",
+          "description": "角色与菜单关联对象列表",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»",
+            "originalRef": "Map«string,object»"
+          }
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        },
+        "updateUserId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "更新者Id"
+        }
+      },
+      "title": "角色VO"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+
+server:
+  port: 8990
+#spring:
+ # mvc:
+  #  pathmatch:
+      #matching-strategy: ant_path_matcher
+  servlet:
+    context-path: /
+custom:
+  title: 1313
+knife4j:
+  enable: true
+  openapi:
+    title: Knife4j官方文档
+    description: "`我是测试`,**你知道吗**
+    # aaa"
+    email: xiaoymin@foxmail.com
+    concat: 八一菜刀
+    url: https://docs.xiaominfo.com
+    version: v4.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
+  production: false
+  setting:
+    custom-code: 500
+    enable-footer-custom: false
+    footer-custom-content: 我是自定义的Footer
+    language: zh_cn
+    enable-footer: true
+    enable-debug: true
+    enable-open-api: true
+    enable-host: false
+    enable-host-text: localhost:9090
+  documents:
+    - name: 我测试
+      group: 根据包名
+      locations: classpath:markdown/*
+  basic:
+    enable: false
+    username: abc
+    password: 123
+  cors: true
+  # Knife4jInsight平台聚合中心，会将该文档OpenAPI内容注册送入平台中
+  insight:
+    enable: true
+    secret: S6CsnS8AnPVyb8vvChcdXm4R3p6A6KlAISxBg3IIEgk=
+    namespace: spring3
+    server: http://localhost:10086
+    service-name: user-service
+spring:
+  messages:
+    basename: i18n/message
+    encoding: utf-8
+    cache-duration: 3600
+
+swagger:
+  enabled: true

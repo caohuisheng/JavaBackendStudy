@@ -1,0 +1,361 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "<p>Springboot 整合swagger demo，使用swagger2构建restful api . <p>",
+    "version": "1.0.1",
+    "title": "Swagger editor demo ",
+    "contact": {
+      "name": "联系开发人员9",
+      "email": "847064370@qq.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://{domain}:{port}/{basePath}",
+      "description": "http请求",
+      "variables": {
+        "domain": {
+          "default": "localhost",
+          "description": "HTTP API请求域名"
+        },
+        "port": {
+          "enum": [
+            "8080",
+            "8081"
+          ],
+          "default": "8080"
+        },
+        "basePath": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://{domain}:{port}/{basePath}",
+      "description": "https请求",
+      "variables": {
+        "domain": {
+          "default": "localhost",
+          "description": "HTTPs API请求域名"
+        },
+        "port": {
+          "enum": [
+            "8080",
+            "8081"
+          ],
+          "default": "8080"
+        },
+        "basePath": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "用户相关操作"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ErrorCode": {
+        "type": "integer",
+        "format": "int64",
+        "enum": [
+          0,
+          10001,
+          10002
+        ],
+        "description": "用户请求返回的信息码\n  * 0：请求成功\n  * 10001：用户名不存在\n  * 10002：用户密码错误\n  * 10003：内部错误\n"
+      },
+      "ResultMessage": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ErrorCode"
+          },
+          "message": {
+            "description": "错误信息描述",
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "description": "请求返回的内容（JSON类型）"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "主键ID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "description": "用户登录名",
+            "type": "string"
+          },
+          "password": {
+            "description": "密码",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "add user",
+        "description": "新增用户信息",
+        "operationId": "addUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "请求成功后返回的内容",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "message": {
+                      "description": "错误信息描述",
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "请求返回的内容（JSON类型）"
+                    }
+                  },
+                  "example": {
+                    "code": 0,
+                    "message": "请求成功",
+                    "data": {
+                      "id": "创建的用户的主键ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "批量获取用户信息",
+        "responses": {
+          "default": {
+            "description": "请求成功后返回的内容",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "find user by id",
+        "description": "根据ID获取用户信息",
+        "operationId": "findUserById",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "用ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求失败"
+          },
+          "default": {
+            "description": "请求成功后返回的内容",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "message": {
+                      "description": "错误信息描述",
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "请求返回的内容（JSON类型）"
+                    }
+                  },
+                  "example": {
+                    "code": 0,
+                    "message": "操作成功",
+                    "data": {
+                      "user": {
+                        "id": "uuid",
+                        "username": "用户登录名",
+                        "password": "用户密码"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "update user",
+        "description": "修改用户信息",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "用ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "操作请求成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "message": {
+                      "description": "错误信息描述",
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "请求返回的内容（JSON类型）"
+                    }
+                  },
+                  "example": {
+                    "code": 0,
+                    "message": "操作成功",
+                    "data": {
+                      "user": {
+                        "id": "uuid",
+                        "username": "用户登录名",
+                        "password": "用户密码"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "delete user",
+        "description": "删除用户信息",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "用ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "操作请求成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "message": {
+                      "description": "错误信息描述",
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "请求返回的内容（JSON类型）"
+                    }
+                  },
+                  "example": {
+                    "code": 0,
+                    "message": "请求成功",
+                    "data": {
+                      "id": "删除的ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "url": "https:/liuyanzhao.com",
+    "description": "@言小曌"
+  }
+}

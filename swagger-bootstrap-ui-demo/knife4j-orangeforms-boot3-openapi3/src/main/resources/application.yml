@@ -1,0 +1,12 @@
+server:
+  port: 17814
+  servlet:
+    context-path: /
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    #operations-sorter: order
+  api-docs:
+    path: /v3/api-docs
+  default-flat-param-object: true
