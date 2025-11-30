@@ -1,9 +1,0 @@
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-server:
-  port: 18901
-springfox:
-  documentation:
-    enabled: true
