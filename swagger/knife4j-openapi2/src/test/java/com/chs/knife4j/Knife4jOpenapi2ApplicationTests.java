@@ -1,4 +1,4 @@
-package com.chs.knife4jopenapi2;
+package com.chs.knife4j;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

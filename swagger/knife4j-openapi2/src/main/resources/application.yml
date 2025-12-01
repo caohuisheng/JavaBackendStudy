@@ -1,0 +1,30 @@
+# 服务端口
+server:
+  port: 8082
+
+
+spring:
+  messages:
+    basename: i18n/message
+    encoding: utf-8
+    cache-duration: 3600
+
+knife4j:
+  enable: true
+  setting:
+    # Knife4j默认显示中文(zh-CN),如果开发者想直接显示英文(en-US)，在通过该配置进行设置即可
+    language: zh-CN
+    enableDocumentManage: true
+  documents:
+    -
+      group: group1
+      name: 文档1
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/*
+    -
+      group: group2
+      name: 文档2
+      # 某一个文件夹下单个.md文件
+      locations: classpath:markdown/doc1.md
+
+

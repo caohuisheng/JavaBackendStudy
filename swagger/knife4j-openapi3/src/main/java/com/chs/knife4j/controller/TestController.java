@@ -1,10 +1,11 @@
-package com.chs.springdoc.controller;
+package com.chs.knife4j.controller;
 
-import com.chs.springdoc.entity.Result;
-import com.chs.springdoc.entity.User;
+import com.chs.knife4j.entity.Result;
+import com.chs.knife4j.entity.User;
+import com.github.xiaoymin.knife4j.annotations.DynamicParameter;
+import com.github.xiaoymin.knife4j.annotations.DynamicParameters;
+import com.github.xiaoymin.knife4j.annotations.DynamicResponseParameters;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.SchemaProperty;
@@ -29,7 +30,7 @@ import java.util.Map;
 @RequestMapping("/test")
 public class TestController {
 
-    @Operation(summary = "map类型入参(使用schemaProperties)", description = "map类型入参接口")
+    /*@Operation(summary = "map类型入参(使用schemaProperties)", description = "map类型入参接口")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schemaProperties = {
             @SchemaProperty(name = "name", schema = @Schema(implementation = String.class)),
             @SchemaProperty(name = "age", schema = @Schema(implementation = Integer.class)),
@@ -37,13 +38,9 @@ public class TestController {
     @PostMapping("/test_map_params")
     public Result<Map<String,Object>> test_map_params(@RequestBody Map<String,Object> params){
         return Result.success(params);
-    }
+    }*/
 
-    @Operation(summary = "map类型入参(使用example)", description = "map类型入参接口<br>params:<br>"+
-            "| 字段 | 类型 | 描述 |<br>" +
-            "| ---- | ---- | ---- |<br>" +
-            "| name | String | 姓名 |<br>" +
-            "| age | Integer | 年龄 |")
+    @Operation(summary = "map类型入参(使用example)", description = "map类型入参接口")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
             schema = @Schema(type = "object", example = "{\"name\":\"bob\",\"age\":20}")
     ))
@@ -61,6 +58,17 @@ public class TestController {
         return Result.success(params);
     }
 
+    @Operation(summary = "map类型入参(使用动态请求参数注解)", description = "map类型入参接口")
+    @DynamicParameters(name = "params",properties = {
+            @DynamicParameter(name = "name",value = "姓名",example = "bob",required = true),
+            @DynamicParameter(name = "age",value = "年龄",dataTypeClass = String.class),
+    })
+    @PostMapping("/test_map_params4")
+    public Result<Map<String,Object>> test_map_params4(@RequestBody Map<String,Object> params){
+        return Result.success(params);
+    }
+
+
     @Operation(summary = "map类型返回值(使用example)", description = "map类型返回值接口")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "成功", content = @Content(schema = @Schema(type = "object", example = "{\"code\":200,\"data\":{\"name\":\"bob\",\"age\":20},\"msg\":\"success\"}")))
@@ -73,12 +81,27 @@ public class TestController {
         return Result.success(res);
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     @Operation(summary = "map类型返回值(使用实体类)", description = "map类型返回值接口")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "成功", content = @Content(schema = @Schema(implementation = User.class)))
     })
     @PostMapping("/test_map_response2")
     public Result<Map<String,Object>> test_map_response2(){
+        Map<String,Object> res = new HashMap<>();
+        res.put("name","张三");
+        res.put("age",22);
+        return Result.success(res);
+    }
+
+    @Operation(summary = "map类型返回值(使用动态参数)", description = "map类型返回值接口")
+    @DynamicResponseParameters(name = "response",properties = {
+            @DynamicParameter(name = "name",value = "姓名",example = "bob",required = true),
+            @DynamicParameter(name = "age",value = "年龄",dataTypeClass = String.class),
+    })
+    @PostMapping("/test_map_response3")
+    public Result<Map<String,Object>> test_map_response3(){
         Map<String,Object> res = new HashMap<>();
         res.put("name","张三");
         res.put("age",22);
