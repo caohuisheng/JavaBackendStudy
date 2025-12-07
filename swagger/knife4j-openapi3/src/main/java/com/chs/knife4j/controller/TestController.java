@@ -1,23 +1,27 @@
 package com.chs.knife4j.controller;
 
+import com.chs.knife4j.custom.CustomOperation;
+import com.chs.knife4j.custom.MapDescription;
 import com.chs.knife4j.entity.Result;
 import com.chs.knife4j.entity.User;
 import com.github.xiaoymin.knife4j.annotations.DynamicParameter;
 import com.github.xiaoymin.knife4j.annotations.DynamicParameters;
 import com.github.xiaoymin.knife4j.annotations.DynamicResponseParameters;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -40,12 +44,15 @@ public class TestController {
         return Result.success(params);
     }*/
 
-    @Operation(summary = "map类型入参(使用example)", description = "map类型入参接口")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
+    @Operation(summary = "map类型入参(使用example)", description = "map类型入参接口<br>params:<br>"+
+            "| 字段 | 类型 | 描述 |<br>" +
+            "| ---- | ---- | ---- |<br>" +
+            "| name | String | 姓名 |<br>" +
+            "| age | Integer | 年龄 |")
+    @PostMapping(value = "/test_map_params2",produces = "application/json")
+    public Result<Map<String,Object>> test_map_params2(@io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
             schema = @Schema(type = "object", example = "{\"name\":\"bob\",\"age\":20}")
-    ))
-    @PostMapping("/test_map_params2")
-    public Result<Map<String,Object>> test_map_params2(@RequestBody Map<String,Object> params){
+    )) @RequestBody Map<String,Object> params){
         return Result.success(params);
     }
 
@@ -68,6 +75,34 @@ public class TestController {
         return Result.success(params);
     }
 
+    @CustomOperation(
+            requestBodyDescription = "这是一个全局自定义的请求体描述",
+            requestBodySchema = User.class // 可选：指定 Schema
+    )
+    @Operation(summary = "map类型入参()", description = "map类型入参接口")
+    @PostMapping("/test_map_params5")
+    public Result<Map<String,Object>> test_map_params5(
+            // @MapDescription(
+            //         keyDescription = "配置项名称",
+            //         valueDescription = "配置项值",
+            //         valueType = String.class
+            // )
+            // @Parameter(
+            //         description = "简单自定义描述",
+            //         required = true,
+            //         schema = @Schema(implementation = Map.class) // 可指定类型
+            // )
+            @RequestBody Map<String,Object> params){
+        return Result.success(params);
+    }
+
+    @Operation(summary = "map类型入参()", description = "map类型入参接口")
+    @PostMapping("/test_map_params6")
+    public Result<Map<String,Object>> test_map_params6(@RequestParam User params){
+        return Result.success(null);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     @Operation(summary = "map类型返回值(使用example)", description = "map类型返回值接口")
     @ApiResponses({
@@ -81,7 +116,6 @@ public class TestController {
         return Result.success(res);
     }
 
-    //------------------------------------------------------------------------------------------------------------------
 
     @Operation(summary = "map类型返回值(使用实体类)", description = "map类型返回值接口")
     @ApiResponses({

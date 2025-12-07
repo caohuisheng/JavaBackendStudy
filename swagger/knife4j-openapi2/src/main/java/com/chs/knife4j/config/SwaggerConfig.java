@@ -1,9 +1,10 @@
 package com.chs.knife4j.config;
 
-import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
+// import com.truedei.swagger.plugin.annotation.EnableSwaggerPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -11,6 +12,8 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+// import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
  * Author: chs
@@ -18,10 +21,12 @@ import springfox.documentation.spring.web.plugins.Docket;
  * CreateTime: 2025-11-30
  */
 @Configuration
+@EnableSwagger2WebMvc
+// @EnableSwaggerPlugin
 public class SwaggerConfig {
 
-    @Autowired
-    private OpenApiExtensionResolver openApiExtensionResolver;
+    // @Autowired
+    // private OpenApiExtensionResolver openApiExtensionResolver;
 
     /**
      * 返回实例Docket(Swagger API摘要)
@@ -38,8 +43,8 @@ public class SwaggerConfig {
                 .select()  // 进入 API 选择模式
                 .apis(RequestHandlerSelectors.basePackage("com.chs.knife4j.controller"))  // 指定扫描的包路径，Swagger 将扫描该包下的所有 Controller 类
                 .paths(PathSelectors.any())  // 指定要包含的路径，PathSelectors.any() 表示包括所有路径
-                .build() // 完成 Docket 实例的构建
-                .extensions(openApiExtensionResolver.buildExtensions(groupName));
+                .build(); // 完成 Docket 实例的构建
+                // .extensions(openApiExtensionResolver.buildExtensions(groupName));
     }
 
     @Bean
@@ -51,8 +56,8 @@ public class SwaggerConfig {
                 .select()  // 进入 API 选择模式
                 .apis(RequestHandlerSelectors.basePackage("com.chs.knife4j.controller"))  // 指定扫描的包路径，Swagger 将扫描该包下的所有 Controller 类
                 .paths(PathSelectors.ant("/test"))  // 指定要包含的路径，PathSelectors.any() 表示包括所有路径
-                .build()  // 完成 Docket 实例的构建
-                .extensions(openApiExtensionResolver.buildExtensions(groupName));
+                .build();  // 完成 Docket 实例的构建
+                // .extensions(openApiExtensionResolver.buildExtensions(groupName));
     }
 
     /**

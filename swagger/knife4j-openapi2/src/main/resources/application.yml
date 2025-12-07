@@ -18,13 +18,21 @@ knife4j:
   documents:
     -
       group: group1
-      name: 文档1
+      name: 自定义文档
       # 某一个文件夹下所有的.md文件
       locations: classpath:markdown/*
     -
       group: group2
-      name: 文档2
+      name: 自定义文档
       # 某一个文件夹下单个.md文件
       locations: classpath:markdown/doc1.md
+
+#swagger 配置
+swagger-plugin:
+  #配置要扫描的controller层
+  scan:
+    path: com.chs.knife4j.controller
+  #是否开启swagger-plugin框架的debug模式
+  debug: false
 
 

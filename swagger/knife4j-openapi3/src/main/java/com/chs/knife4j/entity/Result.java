@@ -1,5 +1,6 @@
 package com.chs.knife4j.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -8,10 +9,14 @@ import lombok.Data;
  * CreateTime: 2025-11-30
  */
 @Data
+@Schema(description = "响应")
 public class Result<T> {
 
+    @Schema(description = "响应码")
     private Integer code;
+    @Schema(description = "响应消息")
     private String msg;
+    @Schema(description = "数据")
     private T data;
 
     public Result(){

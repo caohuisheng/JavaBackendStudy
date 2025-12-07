@@ -6,13 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author: chs
- * @date: 2025-12-04 16:35
- * @description: todo
+ * @author zhenghui
+ * @date 2020年9月17日17:00:49
+ * @desc 排除不需要的属性的值
  */
 @Target({ElementType.PARAMETER, ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Apicp {
+public @interface ApiIgp {
     Class<?> classPath();//对象的原始class地址，必填
     String modelName();//自定义 Model的名字，必填
     String values()[]; //原始对象中已经存在的对象属性名字 ，必填
