@@ -7,10 +7,13 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.parameters.HeaderParameter;
+import io.swagger.v3.oas.models.security.OAuthFlow;
+import io.swagger.v3.oas.models.security.OAuthFlows;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.customizers.GlobalOpenApiCustomizer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -31,9 +34,9 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder().group("group1")
                 .packagesToScan("com.chs.knife4j.controller")
                 .pathsToMatch("/**")
-                .addOperationCustomizer((operation, handlerMethod) -> {
-                    return operation.addParametersItem(new HeaderParameter().name("groupCode").example("测试").description("集团code").schema(new StringSchema()._default("BR").name("groupCode").description("集团code")));
-                })
+                // .addOperationCustomizer((operation, handlerMethod) -> {
+                //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
+                // })
                 .build();
     }
 
@@ -43,22 +46,26 @@ public class SwaggerConfig {
                 .packagesToScan("com.chs.knife4j.controller")
                 // .packagesToExclude("com.chs.knife4j.controller")
                 .pathsToMatch("/test/**")
-                .addOperationCustomizer((operation, handlerMethod) -> {
-                    return operation.addParametersItem(new HeaderParameter().name("groupCode").example("测试").description("集团code").schema(new StringSchema()._default("BR").name("groupCode").description("集团code")));
-                })
+                // .addOperationCustomizer((operation, handlerMethod) -> {
+                //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
+                // })
                 .build();
     }
 
     @Bean
     public OpenAPI customOpenApi() {
         Components components = new Components();
-        components.addSecuritySchemes(HttpHeaders.AUTHORIZATION, new SecurityScheme().name(HttpHeaders.AUTHORIZATION).type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("basic"));
+        components.addSecuritySchemes("AUTH_BASIC", new SecurityScheme().name("AUTH_BASIC").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("basic"));
+        components.addSecuritySchemes("AUTH_API_KEY", new SecurityScheme().name("AUTH_API_KEY").type(SecurityScheme.Type.APIKEY).in(SecurityScheme.In.HEADER));
+        components.addSecuritySchemes("AUTH_BEARER", new SecurityScheme().name("AUTH_BEARER").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("bearer").bearerFormat("JWT"));
+        components.addSecuritySchemes("AUTH_OAUTH2", new SecurityScheme().name("AUTH_OAUTH2").type(SecurityScheme.Type.OAUTH2).flows(
+                new OAuthFlows().clientCredentials(new OAuthFlow().authorizationUrl("/oauth/authorize").tokenUrl("/oauth/token"))
+        ));
         return new OpenAPI()
                 .info(openApiInfo())
                 // 配置全局Basic验证
                 // .addSecurityItem(new SecurityRequirement().addList(HttpHeaders.AUTHORIZATION))
-                .components(new Components().addSecuritySchemes(HttpHeaders.AUTHORIZATION,new SecurityScheme()
-                        .name(HttpHeaders.AUTHORIZATION).type(SecurityScheme.Type.HTTP).scheme("bearer")));
+                .components(components);
     }
 
     @Bean
@@ -68,11 +75,13 @@ public class SwaggerConfig {
             if(openApi.getPaths()!=null){
                 openApi.getPaths().forEach((s, pathItem) -> {
                     pathItem.readOperations().forEach(operation -> {
-                        operation.addSecurityItem(new SecurityRequirement().addList(HttpHeaders.AUTHORIZATION));
+                        // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_BASIC"));
+                        operation.addSecurityItem(new SecurityRequirement().addList("AUTH_API_KEY"));
+                        // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_BEARER"));
+                        // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_OAUTH2"));
                     });
                 });
             }
-
         };
     }
 

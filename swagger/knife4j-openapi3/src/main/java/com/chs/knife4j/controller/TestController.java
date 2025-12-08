@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.core.ResolvableType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -79,27 +80,15 @@ public class TestController {
             requestBodyDescription = "这是一个全局自定义的请求体描述",
             requestBodySchema = User.class // 可选：指定 Schema
     )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = User.class)))
+    })
     @Operation(summary = "map类型入参()", description = "map类型入参接口")
     @PostMapping("/test_map_params5")
-    public Result<Map<String,Object>> test_map_params5(
-            // @MapDescription(
-            //         keyDescription = "配置项名称",
-            //         valueDescription = "配置项值",
-            //         valueType = String.class
-            // )
-            // @Parameter(
-            //         description = "简单自定义描述",
-            //         required = true,
-            //         schema = @Schema(implementation = Map.class) // 可指定类型
-            // )
-            @RequestBody Map<String,Object> params){
-        return Result.success(params);
-    }
+    public Result<Map<String,Object>> test_map_params5(@RequestBody Map<String,Object> params){
+        new Result<User>(){}.getClass();
 
-    @Operation(summary = "map类型入参()", description = "map类型入参接口")
-    @PostMapping("/test_map_params6")
-    public Result<Map<String,Object>> test_map_params6(@RequestParam User params){
-        return Result.success(null);
+        return Result.success(params);
     }
 
     //------------------------------------------------------------------------------------------------------------------

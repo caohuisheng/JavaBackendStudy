@@ -9,14 +9,16 @@ import lombok.Data;
  * CreateTime: 2025-11-30
  */
 @Data
-@Schema(description = "响应")
+@Schema(description = "API响应结构")
 public class Result<T> {
 
-    @Schema(description = "响应码")
-    private Integer code;
-    @Schema(description = "响应消息")
-    private String msg;
-    @Schema(description = "数据")
+    @Schema(description = "状态码", example = "200")
+    private int code;
+
+    @Schema(description = "响应消息", example = "操作成功")
+    private String message;
+
+    @Schema(description = "响应数据")
     private T data;
 
     public Result(){
@@ -25,22 +27,22 @@ public class Result<T> {
     public static Result<Void> success(){
         Result<Void> r = new Result<>();
         r.setCode(200);
-        r.setMsg("success");
+        r.setMessage("成功");
         return r;
     }
 
     public static <T> Result<T> success(T data){
         Result<T> r = new Result<>();
         r.setCode(200);
-        r.setMsg("success");
+        r.setMessage("成功");
         r.setData(data);
         return r;
     }
 
-    public static Result<Void> fail(){
+    public static Result<Void> fail(int code, String message){
         Result<Void> r = new Result<>();
-        r.setCode(500);
-        r.setMsg("failed");
+        r.setCode(code);
+        r.setMessage(message);
         return r;
     }
 
