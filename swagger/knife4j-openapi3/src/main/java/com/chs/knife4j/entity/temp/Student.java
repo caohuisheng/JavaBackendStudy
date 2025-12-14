@@ -1,4 +1,4 @@
-package com.chs.knife4j.entity;
+package com.chs.knife4j.entity.temp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 /**
  * Author: chs
- * Description:
  * CreateTime: 2025-11-30
+ * Description: 学成实体类2（测试同名类在schemas中只显示1个的问题）
  */
-@Schema(description = "学生实体类")
+@Schema(description = "学生实体类2")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
