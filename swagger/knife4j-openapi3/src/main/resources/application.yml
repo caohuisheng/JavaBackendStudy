@@ -9,6 +9,7 @@ spring:
 server:
   port: 8083
 
+
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
@@ -17,25 +18,32 @@ springdoc:
     operations-sorter: alpha
   api-docs:
     path: /v3/api-docs
+  cache:
+    disabled: true
+#  packages-to-scan: com.chs.kinfe4j.controller
+#  paths-to-match: /**
 #  group-configs:
 #    - group: 'default'
 #      paths-to-match: '/**'
-#      packages-to-scan: com.xiaominfo.knife4j.demo.web
+#      packages-to-scan: com.chs.knife4j.controller
+#    - group: 'group1'
+#      paths-to-match: '/api/v1/users/**'
+#      packages-to-scan: com.chs.knife4j.controller
 
 # knife4j的增强配置，不需要增强可以不配
-knife4j:
-  enable: true
-  production: false
-  setting:
-    language: zh_cn
-  documents:
-    - group: 分组1
-      name: 文档1
-      # 某一个文件夹下所有的.md文件
-      locations: classpath:markdown/*
-    - group: 分组2
-      name: 文档2
-      # 某一个文件夹下单个.md文件
-      locations: classpath:markdown/doc1.md
+#knife4j:
+#  enable: false
+#  production: false
+#  setting:
+#    language: zh_cn
+#  documents:
+#    - group: 分组1
+#      name: 文档1
+#      # 某一个文件夹下所有的.md文件
+#      locations: classpath:markdown/*
+#    - group: 分组2
+#      name: 文档2
+#      # 某一个文件夹下单个.md文件
+#      locations: classpath:markdown/doc1.md
 
 

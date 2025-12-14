@@ -1,9 +1,18 @@
 package com.chs.knife4j;
 
+import com.chs.knife4j.entity.Result;
+import com.chs.knife4j.entity.User;
+import com.google.common.reflect.TypeToken;
 import org.springframework.core.ResolvableType;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.description.modifier.Visibility;
 import net.bytebuddy.dynamic.DynamicType;
@@ -29,7 +38,7 @@ public class TestGeneric {
         System.out.println("Generic type: " + genericType.resolve()); // String.class
 
         System.out.println(type.getType());
-        System.out.println(genericType.getRawClass());
+        System.out.println(genericType.getType());
     }
 
     void createClass(){
@@ -70,8 +79,44 @@ public class TestGeneric {
         }
     }
 
-    public static void main(String[] args) {
-        new TestGeneric().createClass();
+    void getGenericClass1(){
+        Result<String> r1 = new Result<String>() {};
+        Result<String> r2 = new Result<String>();
+        System.out.println(r1.getClass());
+        System.out.println(r2.getClass());
     }
 
+    void getGenericClass2(){
+        TypeToken<Result<String>> typeToken = new TypeToken<Result<String>>() {};
+        Class<?> rawType = typeToken.getRawType(); // 获取原始类型List.class
+        Type type = typeToken.getType(); // 获取完整的泛型类型信息
+        System.out.println(rawType);
+        System.out.println(type);
+    }
+
+    void getGenericClass3(){
+        ResolvableType resolvableType = ResolvableType.forClass(new Result<String>().getClass());
+        Class<?> type = resolvableType.as(Result.class).getGeneric(0).resolve();
+        System.out.println("Generic type: " + type);
+    }
+
+    void generateConfig(){
+        // 通过具体子类获取
+        try {
+            Field field = Result.class.getDeclaredField("data");
+            Type genericType = field.getGenericType();
+            System.out.println(genericType);
+            if (genericType instanceof ParameterizedType) {
+                Type[] actualTypes = ((ParameterizedType) genericType).getActualTypeArguments();
+                // 处理实际类型参数
+                System.out.println(actualTypes);
+            }
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        new TestGeneric().test();
+    }
 }

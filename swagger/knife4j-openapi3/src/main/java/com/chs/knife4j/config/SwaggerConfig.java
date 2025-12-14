@@ -31,20 +31,8 @@ public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi group1() {
-        return GroupedOpenApi.builder().group("group1")
+        return GroupedOpenApi.builder().group("default")
                 .packagesToScan("com.chs.knife4j.controller")
-                .pathsToMatch("/**")
-                // .addOperationCustomizer((operation, handlerMethod) -> {
-                //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
-                // })
-                .build();
-    }
-
-    @Bean
-    public GroupedOpenApi group2() {
-        return GroupedOpenApi.builder().group("group2")
-                .packagesToScan("com.chs.knife4j.controller")
-                // .packagesToExclude("com.chs.knife4j.controller")
                 .pathsToMatch("/test/**")
                 // .addOperationCustomizer((operation, handlerMethod) -> {
                 //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
@@ -52,7 +40,19 @@ public class SwaggerConfig {
                 .build();
     }
 
-    @Bean
+    // @Bean
+    public GroupedOpenApi group2() {
+        return GroupedOpenApi.builder().group("group2")
+                .packagesToScan("com.chs.knife4j.controller")
+                // .packagesToExclude("com.chs.knife4j.controller")
+                .pathsToMatch("/test_new_feature/**")
+                // .addOperationCustomizer((operation, handlerMethod) -> {
+                //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
+                // })
+                .build();
+    }
+
+    // @Bean
     public OpenAPI customOpenApi() {
         Components components = new Components();
         components.addSecuritySchemes("AUTH_BASIC", new SecurityScheme().name("AUTH_BASIC").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("basic"));
@@ -68,7 +68,7 @@ public class SwaggerConfig {
                 .components(components);
     }
 
-    @Bean
+    // @Bean
     public GlobalOpenApiCustomizer securityGlobalOpenApiCustomizer() {
         return openApi -> {
             // 全局添加鉴权参数

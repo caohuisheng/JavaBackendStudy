@@ -1,6 +1,4 @@
-package com.chs.knife4j.custom;
-
-import com.github.xiaoymin.knife4j.annotations.DynamicParameter;
+package com.chs.knife4j.annotation;
 
 import java.lang.annotation.*;
 

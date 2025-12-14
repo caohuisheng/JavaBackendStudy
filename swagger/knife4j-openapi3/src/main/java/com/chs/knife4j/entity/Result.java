@@ -24,6 +24,10 @@ public class Result<T> {
     public Result(){
     }
 
+    public static <T> Class<T> getGenericClass() {
+        return (Class<T>) new Object() {}.getClass();
+    }
+
     public static Result<Void> success(){
         Result<Void> r = new Result<>();
         r.setCode(200);
