@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Author: chs
- * Description:
+ * Description: 学生实体类2(测试同名实体类只显示1个问题)
  * CreateTime: 2025-11-30
  */
 @Schema(description = "学生实体类2")
@@ -24,8 +24,5 @@ public class Student {
 
     @Schema(description = "年龄")
     private Integer age;
-
-    @Schema(description = "性别")
-    private Byte sex;
 
 }

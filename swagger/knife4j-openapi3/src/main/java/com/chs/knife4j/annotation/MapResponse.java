@@ -8,19 +8,36 @@ import java.lang.annotation.Target;
 
 /**
  * @author chs
- * @date 2025-12-05 08:15
+ * @date 2025-12-05
  * @description todo
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapResponse {
 
+    /**
+     * 响应码
+     */
     String responseCode() default "default";
 
+    /**
+     * 响应描述
+     */
     String description() default "";
 
+    /**
+     * 原始类型
+     */
     Class<?> rawType() default Void.class;
 
-    Class<?>[] typeArgs() default {};
+    /**
+     * 泛型类型
+     */
+    Class<?> genericType() default Void.class;
+
+    /**
+     * 字段列表
+     */
+    MapParameter[] fields() default {};
 
 }

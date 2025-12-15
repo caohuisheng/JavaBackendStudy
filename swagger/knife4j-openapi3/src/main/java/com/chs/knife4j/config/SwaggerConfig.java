@@ -33,10 +33,10 @@ public class SwaggerConfig {
     public GroupedOpenApi group1() {
         return GroupedOpenApi.builder().group("default")
                 .packagesToScan("com.chs.knife4j.controller")
-                .pathsToMatch("/test/**")
-                // .addOperationCustomizer((operation, handlerMethod) -> {
-                //     return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
-                // })
+                .pathsToMatch("/**")
+                .addOperationCustomizer((operation, handlerMethod) -> {
+                    return operation.addParametersItem(new HeaderParameter().name("Global_Param").example("111").description("全局参数").required(true));
+                })
                 .build();
     }
 
@@ -52,15 +52,15 @@ public class SwaggerConfig {
                 .build();
     }
 
-    // @Bean
+    @Bean
     public OpenAPI customOpenApi() {
         Components components = new Components();
         components.addSecuritySchemes("AUTH_BASIC", new SecurityScheme().name("AUTH_BASIC").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("basic"));
-        components.addSecuritySchemes("AUTH_API_KEY", new SecurityScheme().name("AUTH_API_KEY").type(SecurityScheme.Type.APIKEY).in(SecurityScheme.In.HEADER));
-        components.addSecuritySchemes("AUTH_BEARER", new SecurityScheme().name("AUTH_BEARER").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("bearer").bearerFormat("JWT"));
-        components.addSecuritySchemes("AUTH_OAUTH2", new SecurityScheme().name("AUTH_OAUTH2").type(SecurityScheme.Type.OAUTH2).flows(
-                new OAuthFlows().clientCredentials(new OAuthFlow().authorizationUrl("/oauth/authorize").tokenUrl("/oauth/token"))
-        ));
+        // components.addSecuritySchemes("AUTH_API_KEY", new SecurityScheme().name("AUTH_API_KEY").type(SecurityScheme.Type.APIKEY).in(SecurityScheme.In.HEADER));
+        // components.addSecuritySchemes("AUTH_BEARER", new SecurityScheme().name("AUTH_BEARER").type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).scheme("bearer").bearerFormat("JWT"));
+        // components.addSecuritySchemes("AUTH_OAUTH2", new SecurityScheme().name("AUTH_OAUTH2").type(SecurityScheme.Type.OAUTH2).flows(
+        //         new OAuthFlows().clientCredentials(new OAuthFlow().authorizationUrl("/oauth/authorize").tokenUrl("/oauth/token"))
+        // ));
         return new OpenAPI()
                 .info(openApiInfo())
                 // 配置全局Basic验证
@@ -68,15 +68,15 @@ public class SwaggerConfig {
                 .components(components);
     }
 
-    // @Bean
+    @Bean
     public GlobalOpenApiCustomizer securityGlobalOpenApiCustomizer() {
         return openApi -> {
             // 全局添加鉴权参数
             if(openApi.getPaths()!=null){
                 openApi.getPaths().forEach((s, pathItem) -> {
                     pathItem.readOperations().forEach(operation -> {
-                        // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_BASIC"));
-                        operation.addSecurityItem(new SecurityRequirement().addList("AUTH_API_KEY"));
+                        operation.addSecurityItem(new SecurityRequirement().addList("AUTH_BASIC"));
+                        // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_API_KEY"));
                         // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_BEARER"));
                         // operation.addSecurityItem(new SecurityRequirement().addList("AUTH_OAUTH2"));
                     });
