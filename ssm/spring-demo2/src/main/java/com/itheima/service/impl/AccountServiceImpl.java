@@ -1,12 +1,12 @@
-package com.itheima.service.imp;
+package com.itheima.service.impl;
 
 import com.itheima.dao.AccountDao;
 import com.itheima.pojo.Account;
 import com.itheima.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+// import org.springframework.transaction.annotation.Propagation;
+// import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,12 +45,12 @@ public class AccountServiceImpl implements AccountService {
     /*
     转账
      */
-    @Transactional(rollbackFor = {IOException.class},propagation = Propagation.REQUIRES_NEW)
-    @Override
-    public void transfer(String in, String out, double money)throws IOException {
-        accountDao.outMoney(out,money);
-        //int a = 1/0;
-        if(true) throw new IOException();
-        accountDao.inMoney(in,money);
-    }
+    // @Transactional(rollbackFor = {IOException.class},propagation = Propagation.REQUIRES_NEW)
+    // @Override
+    // public void transfer(String in, String out, double money)throws IOException {
+    //     accountDao.outMoney(out,money);
+    //     //int a = 1/0;
+    //     if(true) throw new IOException();
+    //     accountDao.inMoney(in,money);
+    // }
 }

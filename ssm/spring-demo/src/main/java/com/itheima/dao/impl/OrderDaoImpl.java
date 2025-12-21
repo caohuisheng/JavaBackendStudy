@@ -1,4 +1,4 @@
-package com.itheima.dao.imp;
+package com.itheima.dao.impl;
 
 import com.itheima.dao.OrderDao;
 

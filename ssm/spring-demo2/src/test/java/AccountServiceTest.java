@@ -21,8 +21,8 @@ public class AccountServiceTest {
         System.out.println(account);
     }
 
-    @Test
-    public void testTransfer() throws IOException {
-        accountService.transfer("Tom","Jerry",100);
-    }
+    // @Test
+    // public void testTransfer() throws IOException {
+    //     accountService.transfer("Tom","Jerry",100);
+    // }
 }

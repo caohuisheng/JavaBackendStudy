@@ -16,6 +16,6 @@ public interface AccountService {
 
     Account findById(Integer id);
 
-    void transfer(String in,String out,double money) throws IOException;
+    // void transfer(String in,String out,double money) throws IOException;
 
 }
