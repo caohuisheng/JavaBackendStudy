@@ -1,5 +1,6 @@
 package com.chs.knife4j.annotation;
 
+import javax.xml.bind.annotation.XmlType;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -8,19 +9,19 @@ import java.lang.annotation.Target;
 /**
  * @author chs
  * @date 2025-12-05
- * @description map响应
+ * @description todo
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapResponse {
 
     /**
-     * 状态码
+     * 响应码
      */
-    String responseCode() default "";
+    String responseCode() default "default";
 
     /**
-     * 描述
+     * 响应描述
      */
     String description() default "";
 
@@ -38,4 +39,5 @@ public @interface MapResponse {
      * 字段列表
      */
     MapParameter[] fields() default {};
+
 }

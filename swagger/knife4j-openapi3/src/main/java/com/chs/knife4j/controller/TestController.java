@@ -3,24 +3,22 @@ package com.chs.knife4j.controller;
 import com.chs.knife4j.annotation.MapParameter;
 import com.chs.knife4j.annotation.MapRequest;
 import com.chs.knife4j.annotation.MapResponse;
-import com.chs.knife4j.entity.Result;
-import com.chs.knife4j.entity.User;
-import com.chs.knife4j.entity.temp.Student;
+import com.chs.knife4j.entity.*;
 import com.github.xiaoymin.knife4j.annotations.DynamicParameter;
 import com.github.xiaoymin.knife4j.annotations.DynamicParameters;
 import com.github.xiaoymin.knife4j.annotations.DynamicResponseParameters;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,7 +45,7 @@ public class TestController {
 
     @Operation(summary = "map类型入参2(使用实体类)", description = "map类型入参接口")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
-            schema = @Schema(implementation = User.class)
+            schema = @Schema(implementation = Student.class)
     ))
     @PostMapping("/test_map_params2")
     public Result<Map<String,Object>> test_map_params2(@RequestBody Map<String,Object> params){
@@ -55,12 +53,14 @@ public class TestController {
     }
 
     @Operation(summary = "map类型入参3(使用实体类2)", description = "map类型入参接口")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
+            schema = @Schema(implementation = com.chs.knife4j.entity.temp.Student.class)
+    ))
     @PostMapping("/test_map_params3")
-    public Result<Map<String,String>> test_map_params3(@RequestBody com.chs.knife4j.entity.temp.Student params){
+    public Result<Map<String,Object>> test_map_params3(@RequestBody Map<String,Object> params){
         return Result.success(null);
     }
 
-    // OpenAPI3版本不支持
     @Operation(summary = "map类型入参4(使用动态请求参数注解)", description = "map类型入参接口")
     @DynamicParameters(name = "params",properties = {
             @DynamicParameter(name = "name",value = "姓名",example = "bob",required = true),
@@ -71,24 +71,14 @@ public class TestController {
         return Result.success(params);
     }
 
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = Student.class)))
+    @MapRequest({
+            @MapParameter(name = "name", type = String.class, description = "姓名", example = "zhangsan"),
+            @MapParameter(name = "age", type = Integer.class, description = "年龄", example = "22"),
+    })
     @Operation(summary = "map类型入参5(使用自定义注解)", description = "map类型入参接口")
     @PostMapping("/test_map_params5")
-    @MapRequest({
-            @MapParameter(name = "name", type = String.class, description = "姓名", example = "zhangsan"),
-            @MapParameter(name = "age", type = Integer.class, description = "年龄", example = "22"),
-    })
     public Result<Map<String,Object>> test_map_params5(@RequestBody Map<String,String> params){
-        return Result.success(null);
-    }
-
-    @Operation(summary = "map类型入参6(使用自定义注解2)", description = "map类型入参接口")
-    @PostMapping("/test_map_params6")
-    @MapRequest({
-            @MapParameter(name = "name", type = String.class, description = "姓名", example = "zhangsan"),
-            @MapParameter(name = "age", type = Integer.class, description = "年龄", example = "22"),
-            @MapParameter(name = "sex", type = Integer.class, description = "性别", example = "1"),
-    })
-    public Result<Map<String,Object>> test_map_params6(@RequestBody Map<String,String> params){
         return Result.success(null);
     }
 
@@ -134,7 +124,7 @@ public class TestController {
     }
 
     @Operation(summary = "map类型返回值4(使用自定义注解)", description = "map类型返回值接口")
-    @MapResponse(responseCode = "200", description = "成功", rawType = Result.class, genericType = Student.class)
+    @MapResponse(responseCode = "200", description = "成功", rawType = Result.class, genericType = User.class)
     @PostMapping("/test_map_response4")
     public Result<Map<String,Object>> test_map_response4(){
         Map<String,Object> res = new HashMap<>();
@@ -147,6 +137,7 @@ public class TestController {
     @MapResponse(responseCode = "200", description = "成功", rawType = Result.class, fields = {
             @MapParameter(name = "name", type = String.class, description = "姓名", example = "zhangsan"),
             @MapParameter(name = "age", type = Integer.class, description = "年龄", example = "22"),
+            @MapParameter(name = "address", type = String.class, description = "地址", example = "WuHan"),
     })
     @PostMapping("/test_map_response5")
     public Result<Map<String,Object>> test_map_response5(){

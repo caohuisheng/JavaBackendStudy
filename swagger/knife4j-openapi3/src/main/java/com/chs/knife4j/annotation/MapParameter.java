@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * @author chs
  * @date 2025-12-05
- * @description map参数
+ * @description Map参数
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
