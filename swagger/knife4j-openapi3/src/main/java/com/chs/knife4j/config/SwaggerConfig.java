@@ -12,22 +12,69 @@ import io.swagger.v3.oas.models.security.OAuthFlows;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.SpringDocConfigProperties;
+import org.springdoc.core.SwaggerUiConfigProperties;
 import org.springdoc.core.customizers.GlobalOpenApiCustomizer;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.env.EnvironmentPostProcessor;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.env.*;
 import org.springframework.http.HttpHeaders;
 
+import javax.annotation.PostConstruct;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Author: chs
  * Description:
  * CreateTime: 2025-11-30
  */
+// @Order(Ordered.HIGHEST_PRECEDENCE)
+// @Lazy(false)
+// @ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", matchIfMissing = true)
 @Configuration
-public class SwaggerConfig {
+public class SwaggerConfig{
+
+    @Autowired(required = false)
+    private SpringDocConfigProperties springDocConfigProperties;
+    @Autowired(required = false)
+    private SwaggerUiConfigProperties swaggerUiConfigProperties;
+
+    private void disable(){
+        System.setProperty("springdoc.swagger-ui.enabled", "false");
+        System.setProperty("springdoc.api-docs.enabled", "false");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("PostConstruct====");
+        System.out.println(springDocConfigProperties);
+        System.out.println(swaggerUiConfigProperties);
+        // System.setProperty("springdoc.swagger-ui.enabled", "false");
+        // System.setProperty("springdoc.api-docs.enabled", "false");
+        // disable();
+        // System.out.println(springDocConfigProperties.getApiDocs().isEnabled());
+        // System.out.println(swaggerUiConfigProperties.isEnabled());
+        // springDocConfigProperties.getApiDocs().setEnabled(false);
+        // swaggerUiConfigProperties.setEnabled(false);
+        // System.out.println(springDocConfigProperties.getApiDocs().isEnabled());
+        // System.out.println(swaggerUiConfigProperties.isEnabled());
+    }
 
     @Bean
     public GroupedOpenApi group1() {

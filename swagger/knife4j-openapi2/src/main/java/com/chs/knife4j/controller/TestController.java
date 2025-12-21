@@ -112,12 +112,27 @@ public class TestController {
     }
 
     @ApiOperation(value = "map类型返回值(使用动态参数)", notes = "map类型返回值接口")
-    @DynamicResponseParameters(name = "response",properties = {
+    @DynamicResponseParameters(properties = {
             @DynamicParameter(name = "name",value = "姓名",example = "bob",required = true),
             @DynamicParameter(name = "age",value = "年龄",dataTypeClass = String.class),
     })
     @PostMapping("/test_map_response3")
     public Result<Map<String,Object>> test_map_response3(){
+        Map<String,Object> res = new HashMap<>();
+        res.put("name","张三");
+        res.put("age",22);
+        return Result.success(res);
+    }
+
+    @ApiOperation(value = "map类型返回值(使用动态参数)", notes = "map类型返回值接口")
+    @DynamicResponseParameters(properties = {
+            @DynamicParameter(name = "name",value = "姓名",example = "bob",required = true),
+            @DynamicParameter(name = "age",value = "年龄",dataTypeClass = String.class),
+            @DynamicParameter(name = "address",value = "地址",dataTypeClass = String.class),
+            @DynamicParameter(name = "user",value = "用户",dataTypeClass = User.class),
+    })
+    @PostMapping("/test_map_response4")
+    public Result<Map<String,Object>> test_map_response4(){
         Map<String,Object> res = new HashMap<>();
         res.put("name","张三");
         res.put("age",22);

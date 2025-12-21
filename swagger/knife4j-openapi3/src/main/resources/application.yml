@@ -16,8 +16,10 @@ springdoc:
     path: /swagger-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
+    enabled: true
   api-docs:
     path: /v3/api-docs
+    enabled: true
   cache:
     disabled: true
 #  packages-to-scan: com.chs.kinfe4j.controller
@@ -31,19 +33,19 @@ springdoc:
 #      packages-to-scan: com.chs.knife4j.controller
 
 # knife4j的增强配置，不需要增强可以不配
-#knife4j:
-#  enable: false
-#  production: false
-#  setting:
-#    language: zh_cn
-#  documents:
-#    - group: 分组1
-#      name: 文档1
-#      # 某一个文件夹下所有的.md文件
-#      locations: classpath:markdown/*
-#    - group: 分组2
-#      name: 文档2
-#      # 某一个文件夹下单个.md文件
-#      locations: classpath:markdown/doc1.md
+knife4j:
+  enable: true
+  production: false
+  setting:
+    language: zh_cn
+  documents:
+    - group: default
+      name: 文档1
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/*
+    - group: 分组2
+      name: 文档2
+      # 某一个文件夹下单个.md文件
+      locations: classpath:markdown/doc1.md
 
 

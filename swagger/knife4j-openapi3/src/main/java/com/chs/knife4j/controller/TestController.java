@@ -15,8 +15,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +31,8 @@ import java.util.Map;
  * CreateTime: 2025-11-30
  */
 @Tag(name = "测试controller", description = "测试相关接口")
-@RestController
+// @RestController
+@Controller
 @RequestMapping("/test")
 public class TestController {
 
@@ -89,7 +94,7 @@ public class TestController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "成功", content = @Content(schema = @Schema(type = "object", example = "{\"code\":200,\"data\":{\"name\":\"bob\",\"age\":20},\"msg\":\"success\"}")))
     })
-    @PostMapping("/test_map_response")
+    @PostMapping("/test_map_response1")
     public Result<Map<String,Object>> test_map_response(){
         Map<String,Object> res = new HashMap<>();
         res.put("name","张三");
@@ -145,6 +150,30 @@ public class TestController {
         res.put("name","张三");
         res.put("age",22);
         return Result.success(res);
+    }
+
+    // @Operation(summary = "map类型返回值6(使用自定义注解)", description = "map类型返回值接口")
+    // @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = CreateUserRequest.class)))
+    // @ApiResponses({
+    //         @ApiResponse(responseCode = "200", description = "成功", content = @Content(schema = @Schema(implementation = UserVO.class)))
+    // })
+    // @PostMapping(path = "/test_map_response6", produces = "application/json;charset=utf-8")
+    // public Result<Map<String,Object>> test_map_response6(Map<String,Object> params){
+    //     Map<String,Object> res = new HashMap<>();
+    //     res.put("name","张三");
+    //     res.put("age",22);
+    //     return Result.success(res);
+    // }
+
+    @Operation(summary = "resetStepOne", description = "重置密码第一步")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = CreateUserRequest.class)))
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "成功", content = @Content(schema = @Schema(implementation = CreateUserRequest.class)))
+    })
+    @RequestMapping(value = "/user/reset_password_step_one", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Result<Map<String, Object>> resetStepOne(@RequestBody Map<String, String> params, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+        return Result.success(null);
     }
 
 }

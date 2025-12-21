@@ -49,6 +49,11 @@
             <artifactId>byte-buddy</artifactId>
             <version>1.17.8</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.chs</groupId>-->
+<!--            <artifactId>TestImport</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
     </dependencies>
     <dependencyManagement>
         <dependencies>

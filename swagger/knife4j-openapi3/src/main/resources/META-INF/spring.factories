@@ -1,0 +1,1 @@
+org.springframework.context.ApplicationContextInitializer=com.chs.knife4j.config.PropertySettingInitializer
