@@ -1,9 +1,9 @@
 package com.itheima.factory;
 
-import com.itheima.dao.imp.UserDaoImpl;
+import com.itheima.dao.impl.UserDaoImpl;
 
 public class UserDaoFactory {
-    public UserDaoImpl getUserDaoImpl(){
+    public UserDaoImpl getUserDao(){
         return new UserDaoImpl();
     }
 }

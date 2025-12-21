@@ -1,7 +1,7 @@
 package com.itheima.factory;
 
 import com.itheima.dao.UserDao;
-import com.itheima.dao.imp.UserDaoImpl;
+import com.itheima.dao.impl.UserDaoImpl;
 import org.springframework.beans.factory.FactoryBean;
 
 public class UserDaoFactoryBean implements FactoryBean<UserDao> {

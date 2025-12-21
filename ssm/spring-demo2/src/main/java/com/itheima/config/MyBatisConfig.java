@@ -22,7 +22,6 @@ public class MyBatisConfig {
     public MapperScannerConfigurer mapperScannerConfigurer(){
         MapperScannerConfigurer msc = new MapperScannerConfigurer();
         msc.setBasePackage("com.itheima.dao");
-//        msc.setBeanName("accountDao");
         return msc;
     }
 

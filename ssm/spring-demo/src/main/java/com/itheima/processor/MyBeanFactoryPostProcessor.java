@@ -14,7 +14,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
         System.out.println("beanDefinitionMap填充完毕后调用...");
         //修改某个BeanDefinition
         BeanDefinition beanDefinition = beanFactory.getBeanDefinition("orderDao");
-        beanDefinition.setBeanClassName("com.itheima.service.imp.OrderServiceImpl");
+        beanDefinition.setBeanClassName("com.itheima.service.impl.OrderServiceImpl");
 //        System.out.println(beanDefinition.getBeanClassName());
 
     }

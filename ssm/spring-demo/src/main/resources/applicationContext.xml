@@ -3,55 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--bean的生命周期-->
-    <!--<bean id="bookDao" name="dao" class="com.itheima.dao.imp.BookDaoImpl" scope="singleton" init-method="init" destroy-method="destroy"/>-->
-
-    <!--集合注入-->
-    <!--<bean id="bookDao" name="dao" class="com.itheima.dao.imp.BookDaoImpl" scope="singleton">
-        <property name="list">
-            <list>
-                <value>100</value>
-                <value>200</value>
-                <value>300</value>
-            </list>
-        </property>
-        <property name="map">
-            <map>
-                <entry key="1" value="beijin"></entry>
-                <entry key="2" value="shanghai"></entry>
-                <entry key="3" value="tianjin"></entry>
-            </map>
-        </property>
-        <property name="set">
-            <set>
-                <value>1</value>
-                <value>1</value>
-                <value>2</value>
-            </set>
-        </property>
-    </bean>-->
-
-    <!--使用静态工厂实例化bean-->
-<!--    <bean id="orderDao" class="com.itheima.dao.factory.OrderDaoFactory" factory-method="getOrderDao"/>-->
-
-<!--    &lt;!&ndash;使用实例工厂实例化bean&ndash;&gt;-->
-<!--    <bean id="userDaoFactory" class="com.itheima.dao.factory.UserDaoFactory"/>-->
-<!--    <bean id="userDao" factory-bean="userDaoFactory" factory-method="getUserDaoImpl"/>-->
-
-<!--    &lt;!&ndash;set注入&ndash;&gt;-->
-<!--    <bean id="bookService" name="service" class="com.itheima.service.imp.BookServiceImpl">-->
+    <!--name:为bean指定别名，别名可以有多个，使用逗号，分号，空格进行分隔-->
+<!--    <bean id="bookService" name="service service4 bookEbi" class="com.itheima.service.impl.BookServiceImpl">-->
 <!--        <property name="bookDao" ref="bookDao"/>-->
-<!--        <property name="userDao" ref="userDao"/>-->
 <!--    </bean>-->
+    <!--scope：为bean设置作用范围，可选值为单例singloton，非单例prototype-->
+<!--    <bean id="bookDao" name="bookDao dao" class="com.itheima.dao.impl.BookDaoImpl" scope="singleton"/>-->
 
-    <!--自动注入-->
-<!--    <bean id="orderService" name="orderSerivce" class="com.itheima.service.imp.OrderServiceImpl" autowire="byType"/>-->
-<!--    <bean id="orderDao" name="orderDao" class="com.itheima.dao.imp.OrderDaoImpl"/>-->
+    <!--静态工厂实例化-->
+<!--    <bean id="orderDao" class="com.itheima.factory.OrderDaoFactory" factory-method="getOrderDao"/>-->
+    <!--实例工厂-->
+<!--    <bean id="userFactory" class="com.itheima.factory.UserDaoFactory"/>-->
+<!--    <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"/>-->
 
-    <!--将自定义后处理器定义为bean-->
-    <bean id="orderDao" class="com.itheima.dao.imp.OrderDaoImpl"/>
-    <bean id="userDao" class="com.itheima.dao.imp.UserDaoImpl"/>
-    <bean id="orderService" class="com.itheima.service.imp.OrderServiceImpl"/>
-
-    <bean class="com.itheima.processor.MyBeanFactoryPostProcessor"/>
+    <bean id="userDao" class="com.itheima.factory.UserDaoFactoryBean"/>
 </beans>

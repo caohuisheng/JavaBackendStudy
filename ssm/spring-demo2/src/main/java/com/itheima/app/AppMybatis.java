@@ -10,8 +10,6 @@ public class AppMybatis {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
         AccountService service = ctx.getBean(AccountService.class);
 
-//        service.save(account);
-
         //System.out.println(service);
         //System.out.println(service.findById(1));
         System.out.println(service.findById(1));
