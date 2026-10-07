@@ -1,0 +1,6 @@
+### 发送消息
+POST localhost:8080/order/cc
+Accept: application/json
+
+### 接受消息
+GET localhost:8080/msg

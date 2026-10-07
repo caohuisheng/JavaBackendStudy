@@ -1,0 +1,5 @@
+### 查看映射
+GET http://localhost:81/actuator/pay
+Accept: application/json
+
+

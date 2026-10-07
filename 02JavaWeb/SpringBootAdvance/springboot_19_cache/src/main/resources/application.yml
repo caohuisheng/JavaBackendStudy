@@ -1,0 +1,47 @@
+server:
+  port: 80
+
+#--cache--
+#spring:
+#  cache:
+#    type: redis
+#    ehcache:
+#      config: classpath:ehcache.xml
+#    redis:
+#      time-to-live: 10s #过期时间
+#      use-key-prefix: true #是否使用前缀
+#      #key-prefix: null #前缀
+#      cache-null-values: true #缓存空值
+#  redis:
+#    host: localhost
+#    port: 6379
+
+spring:
+  main:
+    allow-circular-references: true
+
+#--jetcache--
+jetcache:
+  startIntervalMinutes: 1 #每隔一分钟输出缓存命中信息
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson #存储对象类型数据时进行转换
+      valueEncoder: java
+      valueDecoder: java
+  remote:
+    default:
+      type: redis
+      host: localhost
+      port: 6379
+      poolConfig:
+        maxTotal: 40
+    sms:
+      type: redis
+      host: localhost
+      port: 6379
+      poolConfig:
+        maxTotal: 40
+
+
+

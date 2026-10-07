@@ -1,0 +1,50 @@
+server:
+  port: 80
+spring:
+  datasource:
+#    type: druid
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db1
+      username: root
+      password: root
+
+  main:
+    banner-mode: off
+  # 排除不参与热部署的文件
+  devtools:
+    restart:
+      exclude: static/**,public/**,config/application.yml
+      enabled: false # 关闭热部署
+  boot:
+    admin:
+      client:
+        url: http://localhost:80 #监控平台的地址
+management:
+  endpoint:
+    health:
+      show-details: always #显示健康信息
+  endpoints:
+    web:
+      exposure:
+        exclude: "*" #开放全部信息
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_  #table???
+      id-type: auto  # id??
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  pattern:
+    console: "%d %clr(%p) --- [%16t] %clr(%-40.40c){cyan} : %m %n"
+
+testcase:
+  book:
+    id: {random.int}
+    age: {random.int(10)}
+    name: {random.value}
+
+

@@ -1,0 +1,6 @@
+### 生成验证码
+GET http://localhost:8080/sms?tel=181
+Accept: application/json
+
+### 验证
+POST http://localhost:8080/sms?tel=181&code=128202
