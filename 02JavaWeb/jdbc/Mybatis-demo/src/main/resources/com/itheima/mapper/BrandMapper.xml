@@ -1,0 +1,103 @@
+<!--sql映射文件的命名空间为对应接口的全限定名-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.BrandMapper">
+    <!-- sql片段-->
+    <sql id="brand_column">
+        id,brand_name as brandName,company_name as companyName,ordered,description,status
+    </sql>
+
+    <!-- resultMap-->
+    <resultMap id="resultMap" type="brand">
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+    <!--查询所有 -->
+    <select id="selectAll" resultMap="resultMap">
+        select
+            *
+        from tb_brand;
+    </select>
+
+    <!--根据id查询 -->
+    <select id="selectById" resultMap="resultMap">
+        select * from tb_brand where id = #{id};
+    </select>
+
+    <!--条件查询 -->
+    <select id="selectByCondition" resultMap="resultMap">
+        select * from tb_brand
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name like #{brandName};
+            </if>
+        </where>
+    </select>
+
+    <!--条件查询 -->
+    <select id="selectByConditionSingle" resultType="Brand">
+        select * from tb_brand
+        <where>
+            <choose>
+                <when test="status != null">
+                    status = #{status}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_name like #{companyName}
+                </when>
+                <when test="brandName != null and brandName != ''">
+                    brand_name like #{brandName};
+                </when>
+                <otherwise>
+                    1 = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!--条件查询 -->
+    <insert id="insertItem" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand(brand_name,company_name,ordered,description,status)
+        values(#{brandName},#{companyName},#{ordered},#{description},#{status});
+    </insert>
+
+    <update id="updateItem">
+        update tb_brand
+        <set>
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="ordered != null">
+                status = #{status},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            where id = #{id};
+        </set>
+    </update>
+
+    <delete id="deleteById">
+        delete from tb_brand where id = #{id};
+    </delete>
+    <delete id="deleteByIds">
+        delete from tb_brand
+        where id in
+        <foreach collection="arg0" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

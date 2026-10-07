@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div class="cls" id="light" name="hobby"></div>-->
+<input type="checkbox" name="hobby">电影
+<input type="checkbox" name="hobby">旅游
+<input type="checkbox" name="hobby">游戏
+<input type="button" name="hobby" id="btn">游戏
+
+<script>
+f2();
+function f1(){
+alert(123);
+    var hobbys = document.getElementsByName("hobby");
+    alert(hobbys.length);
+    for(let i = 0;i<hobbys.length;i++){
+        hobbys[i].checked = true;
+    }
+}
+
+function f2(){
+    document.getElementById("btn").onClick = function(){
+        alert(123)
+    }
+}
+
+</script>
+
+</body>
+</html>
