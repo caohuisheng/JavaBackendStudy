@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+
+    <!--userDao bean定义-->
+    <!--<bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" scope="singleton" lazy-init="false" init-method="init" destroy-method="destroy">
+        <constructor-arg name="name" value="一笑奈何"/>
+    </bean>-->
+
+    <!--<bean id="userDao" class="com.itheima.factory.UserDaoFactoryBean" factory-method="getUserDao">
+        <constructor-arg name="sex" value="男"/>
+    </bean>-->
+
+    <!--bean工厂-->
+    <!--<bean id="userDaoFactoryBean2" class="com.itheima.factory.UserDaoFactoryBean2"/>
+    <bean id="userDao" factory-bean="userDaoFactoryBean2" factory-method="getUserDao">
+        <constructor-arg name="sex" value="男"/>
+    </bean>-->
+
+    <bean id="userDao" class="com.itheima.factory.UserDaoFactoryBean3"/>
+
+
+    <!--Spring配置非自定义bean-->
+    <!--配置DruidDataSource数据源-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc://localhost:3306/mybatis"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    <!--配置connection-->
+    <bean class="java.lang.Class" factory-method="forName">
+        <constructor-arg name="className" value="com.mysql.jdbc.Driver"/>
+    </bean>
+    <bean id="connection" class="java.sql.DriverManager" factory-method="getConnection" scope="prototype">
+        <constructor-arg name="url" value="jdbc:mysql:///mybatis"/>
+        <constructor-arg name="user" value="root"/>
+        <constructor-arg name="password" value="root"/>
+    </bean>
+    <!--配置mybatis的SqlSessionFactory-->
+    <bean id="inputStream" class="org.apache.ibatis.io.Resources" factory-method="getResourceAsStream">
+        <constructor-arg name="resource" value="mybatis-config.xml"/>
+    </bean>
+    <bean id="sqlSessionFactoryBuilder" class="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+    <bean id="sqlSessionFactory" factory-bean="sqlSessionFactoryBuilder" factory-method="build">
+        <constructor-arg name="inputStream" ref="inputStream"/>
+    </bean>
+
+</beans>

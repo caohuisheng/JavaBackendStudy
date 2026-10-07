@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/aop 
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--配置目标类-->
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"/>
+    <!--配置通知类-->
+    <bean id="myAdvice" class="com.itheima.advice.MyAdvice"/>
+
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="myPointCut" expression="execution(void com.itheima.service.impl.UserServiceImpl.show1())"/>
+        <!--切面=切点+通知-->
+        <aop:aspect ref="myAdvice">
+            <!--指定前置通知方法-->
+            <aop:before method="beforeAdvice" pointcut-ref="myPointCut"/>
+            <!--指定后置通知方法-->
+            <aop:after method="afterAdvice" pointcut-ref="myPointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
