@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean的生命周期-->
+    <bean id="bookDao" name="dao" class="com.itheima.dao.impl.BookDaoImpl" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="connectionNum" value="10"/>
+    </bean>
+    <bean id="bookDao2" name="dao" class="com.itheima.dao.impl.BookDaoImpl" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="connectionNum" value="10"/>
+    </bean>
+<!--    <bean id="bookService" name="service" class="com.itheima.service.impl.BookServiceImpl">-->
+<!--        <property name="bookDao" ref="bookDao"/>-->
+<!--    </bean>-->
+
+</beans>
