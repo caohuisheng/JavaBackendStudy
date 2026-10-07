@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <a v-bind:href="url">点击一下</a>
+    <a :href="url">点击一下</a>
+    <input v-model="url"><br>
+    <input type="button" value="button" v-on:click="show()">
+    <input type="button" value="button" @click="show()">
+    <br>
+
+    <div v-if="count==1">div1</div>
+    <div v-else-if="count==2">div2</div>
+    <div v-else>div3</div>
+    <input v-model="count">
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+    //创建vue核心对象
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                username:"",
+                url:"",
+                count:3
+            }
+        },
+        methods:{
+            show(){
+                alert("aaa")
+            }
+        }
+    })
+</script>
+</body>
+</html>

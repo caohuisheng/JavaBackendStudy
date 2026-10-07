@@ -1,0 +1,5 @@
+### 生成cookie
+GET http://localhost:8080/brand-demo/aServlet
+Accept: application/json
+
+
