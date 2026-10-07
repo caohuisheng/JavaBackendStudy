@@ -1,0 +1,42 @@
+package com.itheima.CharStream;
+
+import java.io.*;
+
+public class CharStream {
+    public static void main(String[] args) throws IOException{
+        demo2();
+    }
+
+    /*
+    字符流中的编码解码问题
+     */
+    public static void demo1() throws IOException {
+        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("File\\test.txt"),"GBK");
+        osw.write("中国");
+        int ch;
+        osw.close();
+        InputStreamReader isr = new InputStreamReader(new FileInputStream("File\\test.txt"),"GBK");
+        while((ch = isr.read()) != -1){
+            System.out.print((char)ch);
+        }
+        //chs = isr.read();
+        isr.close();
+    }
+
+    /*
+    字符流写数据的5种方式
+     */
+    public static void demo2() throws IOException {
+        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("File\\test.txt"));
+        osw.write(97);
+        osw.flush();
+        osw.close();
+    }
+
+    /*
+    复制java文件
+     */
+    public static void copyJavaFile() throws IOException{
+        InputStreamReader isr = new InputStreamReader(new FileInputStream("File\\"))
+    }
+}

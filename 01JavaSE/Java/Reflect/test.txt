@@ -1,0 +1,2 @@
+className=com.itheima.demo6.Teacher
+methodName=teach

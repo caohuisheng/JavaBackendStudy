@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<students>
+    <student id="stu001">
+        <name>赵金麦</name>
+        <age>20</age>
+        <address>西安</address>
+    </student>
+    <student id="stu002">
+        <name>刘亦菲</name>
+        <age>20</age>
+        <address>上海</address>
+    </student>
+</students>
